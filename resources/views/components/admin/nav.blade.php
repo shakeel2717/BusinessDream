@@ -19,7 +19,7 @@
                 <span class="shape1"></span>
                 <span class="shape2"></span>
                 <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All USers</span>
+                <span class="sidemenu-label">All Users</span>
             </a>
         </li>
         <li class="nav-item">
@@ -28,6 +28,14 @@
                 <span class="shape2"></span>
                 <i class="ti-layout sidemenu-icon menu-icon "></i>
                 <span class="sidemenu-label">Pending Tids</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.report.methods') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">All Methods</span>
             </a>
         </li>
     </ul>

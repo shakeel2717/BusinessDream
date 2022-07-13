@@ -20,6 +20,12 @@ class ReportController extends Controller
     }
 
 
+    public function methods()
+    {
+        return view('admin.reports.methods');
+    }
+
+
 
     /**
      * Display a listing of the resource.

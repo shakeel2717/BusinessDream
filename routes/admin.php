@@ -9,5 +9,6 @@ Route::prefix('admin')->middleware('auth', 'admin')->name('admin.')->group(funct
     Route::controller(ReportController::class)->name("report.")->group(function () {
         Route::get('/tids/pending', 'pendingTids')->name('pending.tids');
         Route::get('/users', 'users')->name('users');
+        Route::get('/methods', 'methods')->name('methods');
     });
 });
