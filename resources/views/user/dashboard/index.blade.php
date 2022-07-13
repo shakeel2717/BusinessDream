@@ -76,12 +76,10 @@
                         <div class="col-md-10">
                             <p>Copy Your Refer Link .</p>
                             <div class="input-group">
-                                <input type="text" class="form-control input-lg" id="wallet-address"
-                                    value="afb0dc8bc84625587b85415c86ef43ed8df">
+                                <input type="text" class="form-control input-lg" id="refer_link"
+                                    value="{{ generateReferLinks(auth()->user()->id) }}">
                                 <div class="input-group-prepend">
-                                    <button class="clipboard-icon" data-clipboard-target="#wallet-address"
-                                        data-bs-toggle="tooltip" title="" data-bs-original-title="Copy to clipboard"
-                                        data-original-title="Copy to clipboard">COPY</button>
+                                    <button id="copyClipboard" class="clipboard-icon">COPY</button>
                                 </div>
                             </div>
                         </div>
@@ -138,4 +136,15 @@
             </div>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        // copyClipboard click and copy refer_link
+        $('#copyClipboard').click(function() {
+            var copyText = document.getElementById("refer_link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        });
+    </script>
 @endsection

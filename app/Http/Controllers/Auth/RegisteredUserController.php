@@ -19,10 +19,32 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($position = null, $refer = null)
     {
         $methods = Method::where('status', true)->get();
-        return view('auth.register', compact('methods'));
+        // checking if this refer exists
+        if ($refer != null) {
+            $referDetail = User::where('username', $refer)->firstOrFail();
+            // checking if this user position is free
+            switch ($position) {
+                case 'left':
+                    if ($referDetail->left != "free") {
+                        return 'This position is already taken.';
+                    }
+                    break;
+
+                case 'right':
+                    if ($referDetail->right != "free") {
+                        return 'This position is already taken.';
+                    }
+                    break;
+
+                default:
+                    return 'This position is not valid.';
+                    break;
+            }
+        }
+        return view('auth.register', compact('methods', 'position', 'refer'));
     }
 
     /**
@@ -40,9 +62,41 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'refer' => ['nullable', 'string', 'max:255', 'exists:users,username'],
+            'position' => ['nullable', 'string', 'max:255'],
             'tid' => ['required', 'string', 'max:255', 'unique:tids,tid'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // Refer System
+        // checking if refer is not null
+        if ($request->refer != null) {
+            $referDetail = User::where('username', $request->refer)->firstOrFail();
+            switch ($request->position) {
+                case 'left':
+                    // checking if this position is free
+                    if ($referDetail->left != "free") {
+                        return 'This position is already taken.';
+                    } else {
+                        $referDetail->left = $request->username;
+                        $referDetail->save();
+                    }
+                    break;
+
+                case 'right':
+                    // checking if this position is free
+                    if ($referDetail->right != "free") {
+                        return 'This position is already taken.';
+                    } else {
+                        $referDetail->right = $request->username;
+                        $referDetail->save();
+                    }
+                    break;
+
+                default:
+                    return 'This position is not valid.';
+                    break;
+            }
+        }
 
         $referValidate = User::where('username', $request->refer)->get();
 

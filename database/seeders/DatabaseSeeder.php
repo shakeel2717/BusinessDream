@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Method;
 use App\Models\Option;
+use App\Models\Tid;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -61,6 +62,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'shakeel2717@gmail.com',
             'password' => bcrypt('asdfasdf'),
             'whatsapp' => '03037702717',
+        ]);
+
+        Tid::updateOrCreate([
+            'user_id' => 1,
+            'tid' => 786786,
         ]);
 
 

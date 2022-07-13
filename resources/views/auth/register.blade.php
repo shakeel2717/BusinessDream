@@ -10,7 +10,7 @@
                     <img src="assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-start float-start mb-4"
                         alt="logo">
                     <div class="clearfix"></div>
-                    <form accept="{{ route('login') }}" method="POST">
+                    <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <h5 class="text-start mb-2">Create new Account</h5>
                         <p class="mb-4 text-muted tx-13 ms-0 text-start">{{ env('APP_DESC') }}</p>
@@ -20,9 +20,11 @@
                         <x-input name="whatsapp" label="Your Whatsapp # Example: +92300XXXXXXX" />
                         <x-input name="password" type="password" label="Password" />
                         <x-input name="password_confirmation" type="password" label="Confirm Password" />
+                        <input type="hidden" name="position" id="position" value="{{ $position }}">
+                        <input type="hidden" name="refer" id="refer" value="{{ $refer }}">
                         <br>
-                        <a class="btn ripple btn-primary mb-5" data-bs-target="#scrollingmodal" data-bs-toggle="modal"
-                            href="">View Demo</a>
+                        <a class="btn ripple btn-primary mb-3" data-bs-target="#scrollingmodal" data-bs-toggle="modal"
+                            href="">Payment Methods</a>
                         <br>
                         <x-input name="tid" type="text" label="Payment Transaction ID" />
 
