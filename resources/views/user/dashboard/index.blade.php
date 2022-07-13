@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card custom-card card-dashboard-calendar pb-0">
                 <label class="main-content-label mb-2 pt-1">Recent transcations</label>
                 <span class="d-block tx-12 mb-2 text-muted">All Kinds of Recent Funds transaction</span>
@@ -43,6 +43,27 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <div class="row row-sm">
+                        <div class="col-6">
+                            <div class="card-item-title">
+                                <label class="main-content-label tx-13 font-weight-bold mb-2">Account Activation</label>
+                                <span
+                                    class="d-block tx-12 mb-0 text-{{ isActive(auth()->user()->id) ? 'muted' : 'danger' }}">{{ isActive(auth()->user()->id) ? 'Your Account is Active' : 'Your Account is Not yet Active' }}</span>
+                            </div>
+                            <p class="mb-0 tx-24 mt-2"><b class="text-primary">TID:{{ auth()->user()->tid->tid }}</b></p>
+                            <a href="javascript:void(0)" class="text-muted">Tid Submit:
+                                {{ auth()->user()->tid->created_at->diffForHumans() }} </a>
+                        </div>
+                        <div class="col-6">
+                            <img src="../assets/icon/money-bag.png" alt="image" class="best-emp">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
