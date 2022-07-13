@@ -1,59 +1,33 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.auth')
+@section('title')
+    Create new Account
+@endsection
+@section('form')
+    <div class="col-lg-6 col-xl-7 col-xs-12 col-sm-12 login_form ">
+        <div class="main-container container-fluid">
+            <div class="row row-sm">
+                <div class="card-body mt-2 mb-2">
+                    <img src="assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-start float-start mb-4"
+                        alt="logo">
+                    <div class="clearfix"></div>
+                    <form accept="{{ route('login') }}" method="POST">
+                        <h5 class="text-start mb-2">Create new Account</h5>
+                        <p class="mb-4 text-muted tx-13 ms-0 text-start">{{ env('APP_DESC') }}</p>
+                        <x-input name="name" label="Enter Full Name" />
+                        <x-input name="username" label="Type Username" />
+                        <x-input name="email" type="email" label="Type Email" />
+                        <x-input name="whatsapp" label="Your Whatsapp # Example: +92300XXXXXXX" />
+                        <x-input name="password" type="password" label="Password" />
+                        <x-input name="password_confirmation" type="password" label="Confirm Password" />
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                        <button class="btn ripple btn-main-primary btn-block">Create Account</button>
+                    </form>
+                    <div class="text-start mt-5 ms-0">
+                        <div class="mb-1"><a href="{{ route('password.request') }}">Forgot password?</a></div>
+                        <div>Already have an account? <a href="{{ route('login') }}">Login here</a></div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+@endsection
