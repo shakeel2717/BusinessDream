@@ -16,7 +16,8 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/plugins/multipleselect/multiple-select.css') }}">
-
+    @livewireStyles
+    @powerGridStyles
 </head>
 
 <body class="ltr main-body leftmenu">
@@ -93,7 +94,8 @@
                                         </a>
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
-                                            <button class="dropdown-item"><i class="fe fe-power"></i> Sign Out</button>
+                                            <button class="dropdown-item"><i class="fe fe-power"></i> Sign
+                                                Out</button>
                                         </form>
                                     </div>
                                 </div>
@@ -118,21 +120,11 @@
                                 class="header-brand-img icon-logo theme-logo" alt="logo">
                         </a>
                     </div>
-                    <div class="main-sidebar-body main-body-1">
-                        <div class="slide-left disabled" id="slide-left"><i class="fe fe-chevron-left"></i></div>
-                        <ul class="menu-nav nav">
-                            <li class="nav-header"><span class="nav-label">Dashboard</span></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.dashboard.index') }}">
-                                    <span class="shape1"></span>
-                                    <span class="shape2"></span>
-                                    <i class="ti-layout sidemenu-icon menu-icon "></i>
-                                    <span class="sidemenu-label">Overview</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="slide-right" id="slide-right"><i class="fe fe-chevron-right"></i></div>
-                    </div>
+                    @if (Auth::user()->role == 'user')
+                        <x-user.nav />
+                    @else
+                        <x-admin.nav />
+                    @endif
                 </div>
             </div>
         </div>
@@ -192,6 +184,8 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     @yield('footer')
     <x-alert />
+    @livewireScripts
+    @powerGridScripts
 
 </body>
 
