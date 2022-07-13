@@ -11,6 +11,7 @@
                         alt="logo">
                     <div class="clearfix"></div>
                     <form accept="{{ route('login') }}" method="POST">
+                        @csrf
                         <h5 class="text-start mb-2">Create new Account</h5>
                         <p class="mb-4 text-muted tx-13 ms-0 text-start">{{ env('APP_DESC') }}</p>
                         <x-input name="name" label="Enter Full Name" />

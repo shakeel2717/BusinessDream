@@ -36,12 +36,19 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'refer' => ['nullable', 'string', 'max:255', 'exists:users,username'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        $referValidate = User::where('username', $request->refer)->get();
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->username,
+            'whatsapp' => $request->whatsapp,
+            'refer' => $referValidate ? 'default' : $request->refer,
             'password' => Hash::make($request->password),
         ]);
 
