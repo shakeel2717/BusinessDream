@@ -57,6 +57,15 @@ class DatabaseSeeder extends Seeder
 
 
         User::updateOrCreate([
+            'name' => 'Administer',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('asdfasdf'),
+            'whatsapp' => '03037702700',
+            'role' => 'admin',
+        ]);
+
+        User::updateOrCreate([
             'name' => 'Shakeel Ahmad',
             'username' => 'shakeel2717',
             'email' => 'shakeel2717@gmail.com',
@@ -65,7 +74,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Tid::updateOrCreate([
-            'user_id' => 1,
+            'user_id' => 2,
             'tid' => 786786,
         ]);
 
