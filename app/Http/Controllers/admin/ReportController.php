@@ -10,9 +10,14 @@ class ReportController extends Controller
 
     public function pendingTids()
     {
-        return view('admin.reports.tids');
+        return view('admin.reports.pendingTids');
     }
 
+
+    public function allTids()
+    {
+        return view('admin.reports.tids');
+    }
 
     public function users()
     {
