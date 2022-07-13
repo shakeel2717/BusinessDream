@@ -24,6 +24,7 @@ class User extends Authenticatable
         'whatsapp',
         'status',
         'suspend',
+        'password',
         'refer',
         'left',
         'right',

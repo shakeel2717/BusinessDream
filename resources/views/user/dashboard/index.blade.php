@@ -3,7 +3,7 @@
 @section('content')
     <div class="row row-sm">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-            <x-card-state value="{{ env('APP_CURRENCY') }}{{ number_format(0, 2) }}" icon="wallet"
+            <x-card-state value="{{ env('APP_CURRENCY') }}{{ number_format(balance(auth()->user()->id), 2) }}" icon="wallet"
                 heading="TOTAL REVENUE" />
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">

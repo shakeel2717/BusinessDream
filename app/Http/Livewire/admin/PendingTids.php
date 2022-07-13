@@ -3,8 +3,11 @@
 namespace App\Http\Livewire\admin;
 
 use App\Models\Tid;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
@@ -55,7 +58,7 @@ final class PendingTids extends PowerGridComponent
         return Tid::query()
             ->join('users', 'users.id', '=', 'tids.user_id')
             ->select('tids.*', 'users.name as user_name')
-            ->where('tids.status',false);
+            ->where('tids.status', false);
     }
 
     /*
@@ -151,21 +154,54 @@ final class PendingTids extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+
     public function actions(): array
     {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('tid.edit', ['tid' => 'id']),
+        return [
+            //    Button::make('edit', 'Edit')
+            //        ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+            //        ->route('tid.edit', ['tid' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('tid.destroy', ['tid' => 'id'])
-               ->method('delete')
+            //    Button::make('destroy', 'Delete')
+            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+            //        ->route('tid.destroy', ['tid' => 'id'])
+            //        ->method('delete')
+
+            Button::add('destroy')
+                ->caption("Approve")
+                ->class('btn btn-sm btn-success')
+                ->emit('approveTid', ['id' => 'id'])
         ];
     }
-    */
+
+    protected function getListeners()
+    {
+        return 'approveTid';
+    }
+
+    public function approveTid($id)
+    {
+        $tid = Tid::find($id['id']);
+        $tid->status = true;
+        $tid->save();
+
+        // checking if this user has valid refer
+        if ($tid->user->refer != "default") {
+            Log::info("User has valid refer");
+
+            $upliner = User::where('username', $tid->user->refer)->first();
+            $transaction = new Transaction();
+            $transaction->user_id = $upliner->id;
+            $transaction->amount = option("referCommision");
+            $transaction->status = true;
+            $transaction->sum = true;
+            $transaction->type = 'reward';
+            $transaction->save();
+        } else {
+            Log::info("User has not valid refer");
+        }
+    }
+
 
     public function onUpdatedEditable($id, $field, $value): void
     {
@@ -175,12 +211,9 @@ final class PendingTids extends PowerGridComponent
     }
 
 
-    public function onUpdatedToggleable(string $id, string $field, string $value): void
-    {
-        Tid::query()->find($id)->update([
-            $field => $value,
-        ]);
-    }
+
+
+
 
     /*
     |--------------------------------------------------------------------------

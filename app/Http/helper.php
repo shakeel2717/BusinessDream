@@ -2,6 +2,7 @@
 
 use App\Models\Option;
 use App\Models\Tid;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -72,4 +73,12 @@ function myRightUsers($user_id)
         }
     }
     return $count;
+}
+
+
+function balance($user_id)
+{
+    $in = Transaction::where('user_id', $user_id)->where('sum', true)->sum('amount');
+    $out = Transaction::where('user_id', $user_id)->where('sum', false)->sum('amount');
+    return $in - $out;
 }

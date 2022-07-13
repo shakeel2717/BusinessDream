@@ -173,14 +173,6 @@ final class AllTids extends PowerGridComponent
         ]);
     }
 
-
-    public function onUpdatedToggleable(string $id, string $field, string $value): void
-    {
-        Tid::query()->find($id)->update([
-            $field => $value,
-        ]);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Actions Rules

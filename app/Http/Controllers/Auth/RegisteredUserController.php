@@ -98,14 +98,12 @@ class RegisteredUserController extends Controller
             }
         }
 
-        $referValidate = User::where('username', $request->refer)->get();
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,
             'whatsapp' => $request->whatsapp,
-            'refer' => $referValidate ? 'default' : $request->refer,
+            'refer' => $request->refer,
             'password' => Hash::make($request->password),
         ]);
 
@@ -115,7 +113,7 @@ class RegisteredUserController extends Controller
 
         $user->tid()->create([
             'tid' => $request->tid,
-            'status' => true,
+            'status' => false,
         ]);
 
         return redirect(RouteServiceProvider::HOME);
