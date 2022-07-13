@@ -20,6 +20,11 @@
                         <x-input name="whatsapp" label="Your Whatsapp # Example: +92300XXXXXXX" />
                         <x-input name="password" type="password" label="Password" />
                         <x-input name="password_confirmation" type="password" label="Confirm Password" />
+                        <br>
+                        <a class="btn ripple btn-primary mb-5" data-bs-target="#scrollingmodal" data-bs-toggle="modal"
+                            href="">View Demo</a>
+                        <br>
+                        <x-input name="tid" type="text" label="Payment Transaction ID" />
 
                         <button class="btn ripple btn-main-primary btn-block">Create Account</button>
                     </form>
@@ -31,4 +36,74 @@
             </div>
         </div>
     </div>
+@endsection
+@section('footer')
+    <!-- Scroll modal -->
+    <div class="modal" id="scrollingmodal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">Scrolling With Content Modal</h6><button aria-label="Close" class="btn-close"
+                        data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div>
+                                    <h6 class="main-content-label mb-1">Payment Methods</h6>
+                                    <p class="text-muted card-sub-title">Send <b> {{ env('APP_CURRENCY') }}
+                                        {{ number_format(option('fees'), 2) }} </b> Payment to this Address. and Copy the TID
+                                        or Referrence Id.</p>
+                                </div>
+                                <div aria-multiselectable="true" class="accordion accordion-color mt-3" id="accordion2"
+                                    role="tablist">
+                                    @forelse ($methods as $method)
+                                        <div class="card">
+                                            <div class="card-header" id="heading" role="tab">
+                                                <a aria-controls="collapseOne{{ $loop->iteration }}" aria-expanded="false"
+                                                    data-bs-toggle="collapse" href="#collapseOne{{ $loop->iteration }}"
+                                                    class="text-uppercase">{{ $method->type }}</a>
+                                            </div>
+                                            <div aria-labelledby="heading" class="collapse" data-bs-parent="#accordion2"
+                                                id="collapseOne{{ $loop->iteration }}" role="tabpanel">
+                                                <div class="card-body">
+                                                    <div class="table">
+                                                        <table>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <td>{{ $method->name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Account Number</th>
+                                                                <td>{{ $method->number }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Account Title</th>
+                                                                <td>{{ $method->title }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Recieving Number</th>
+                                                                <td>{{ $method->r_number }}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <h2>No Method Found</h2>
+                                    @endforelse
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn ripple btn-primary" data-bs-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Scroll modal -->
 @endsection

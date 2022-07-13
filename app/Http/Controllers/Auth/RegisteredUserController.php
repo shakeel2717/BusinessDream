@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Method;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $methods = Method::where('status', true)->get();
+        return view('auth.register', compact('methods'));
     }
 
     /**
@@ -38,6 +40,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'refer' => ['nullable', 'string', 'max:255', 'exists:users,username'],
+            'tid' => ['required', 'string', 'max:255', 'unique:tids,tid'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -55,6 +58,11 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $user->tid()->create([
+            'tid' => $request->tid,
+            'status' => true,
+        ]);
 
         return redirect(RouteServiceProvider::HOME);
     }

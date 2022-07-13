@@ -54,6 +54,8 @@
     <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/themeColors.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    @yield('footer')
+    <x-alert />
 </body>
 
 </html>

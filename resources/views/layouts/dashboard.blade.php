@@ -91,9 +91,10 @@
                                         <a class="dropdown-item" href="profile.html">
                                             <i class="fe fe-edit"></i> Edit Profile
                                         </a>
-                                        <a class="dropdown-item" href="signin.html">
-                                            <i class="fe fe-power"></i> Sign Out
-                                        </a>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button class="dropdown-item"><i class="fe fe-power"></i> Sign Out</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +155,7 @@
                             </div>
                         </div>
                     </div>
+                    @yield('content')
                 </div>
             </div>
         </div>
@@ -161,7 +163,8 @@
             <div class="container">
                 <div class="row row-sm">
                     <div class="col-md-12">
-                        <span>Copyright © {{ date('Y') }} <a href="javascript:void(0)">{{ env('APP_NAME') }}</a>. Designed by <a target="_blank"
+                        <span>Copyright © {{ date('Y') }} <a
+                                href="javascript:void(0)">{{ env('APP_NAME') }}</a>. Designed by <a target="_blank"
                                 href="https://www.asanwebs.com/">ASAN Webs Development</a> All rights reserved.</span>
                     </div>
                 </div>
@@ -187,6 +190,9 @@
     <script src="{{ asset('assets/js/themeColors.js') }}"></script>
     <script src="{{ asset('assets/js/sticky.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    @yield('footer')
+    <x-alert />
+
 </body>
 
 </html>
