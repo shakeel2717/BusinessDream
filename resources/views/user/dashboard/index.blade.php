@@ -73,8 +73,10 @@
                 <div class="card-body">
                     <label class="main-content-label mb-0">My Refer link</label>
                     <div class="row mt-3 crypto-wallet">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <p>Copy Your Refer Link .</p>
+                            <hr>
+
                             <div class="input-group">
                                 <input type="text" class="form-control input-lg" id="refer_link"
                                     value="{{ generateReferLinks(auth()->user()->id) }}">
@@ -93,8 +95,8 @@
                                     <span class="crypto-icon bg-primary-transparent me-3 my-auto"><i
                                             class="fe fe-arrow-down-left text-primary"></i></span>
                                     <div class="">
-                                        <p class="text-uppercase tx-13 text-muted mb-1">Received</p>
-                                        <h5 class="">4,342.4545 <span
+                                        <p class="text-uppercase tx-13 text-muted mb-1">Left Members</p>
+                                        <h5 class="">{{ myLeftUsers(auth()->user()->id) }} <span
                                                 class="tx-14 text-muted font-weight-normal ms-1">BTC</span></h5>
                                     </div>
                                 </div>
@@ -109,8 +111,8 @@
                                         <i class="fe fe-arrow-up-right text-primary"></i>
                                     </span>
                                     <div class="">
-                                        <p class="text-uppercase tx-13 text-muted mb-1">Sent</p>
-                                        <h5 class="">5,194.24623539 <span
+                                        <p class="text-uppercase tx-13 text-muted mb-1">Right Members</p>
+                                        <h5 class="">{{ myRightUsers(auth()->user()->id) }} <span
                                                 class="tx-14 text-muted font-weight-normal ms-1">BTC</span></h5>
                                     </div>
                                 </div>
@@ -124,8 +126,8 @@
                                     <span class="crypto-icon bg-primary-transparent me-3 my-auto"><i
                                             class="fas fa-wallet text-primary"></i></span>
                                     <div class="">
-                                        <p class="text-uppercase tx-13 text-muted mb-1">Balance</p>
-                                        <h5 class="">2.33823739 <span
+                                        <p class="text-uppercase tx-13 text-muted mb-1">Total Members</p>
+                                        <h5 class="">{{ myLeftUsers(auth()->user()->id) + myRightUsers(auth()->user()->id) }} <span
                                                 class="tx-14 text-muted font-weight-normal ms-1">BTC</span></h5>
                                     </div>
                                 </div>
