@@ -7,7 +7,7 @@
     <meta name="description" content="{{ env('APP_DESC') }}">
     <meta name="author" content="ASAN Webs Development">
     <meta name="keywords" content="{{ env('APP_KEYWORD') }}">
-    <link rel="icon" href="{{ asset('assets/img/brand/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('assets/img/brand/favi.png') }}" type="image/x-icon" />
     <title>@yield('title') - {{ env('APP_DESC') }}</title>
     <link id="style" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/web-fonts/icons.css') }}" rel="stylesheet" />
@@ -28,9 +28,9 @@
                     <a class="main-header-menu-icon" href="javascript:void(0)" id="mainSidebarToggle"><span></span></a>
                     <div class="hor-logo">
                         <a class="main-logo" href="index.html">
-                            <img src="{{ asset('assets/img/brand/logo.png" class="header-brand-img desktop-logo') }}"
+                            <img src="{{ asset('assets/img/brand/logo.png"') }}" class="header-brand-img desktop-logo"
                                 alt="logo">
-                            <img src="{{ asset('assets/img/brand/logo-light.png" class="header-brand-img desktop-logo-dark') }}"
+                            <img src="{{ asset('assets/img/brand/logo-light.png"') }}" class="header-brand-img desktop-logo-dark"
                                 alt="logo">
                         </a>
                     </div>
