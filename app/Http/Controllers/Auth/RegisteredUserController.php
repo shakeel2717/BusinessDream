@@ -96,6 +96,8 @@ class RegisteredUserController extends Controller
                     return 'This position is not valid.';
                     break;
             }
+        } else {
+            $request->refer = 'default';
         }
 
         $user = User::create([
