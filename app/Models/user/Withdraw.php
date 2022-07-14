@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\user;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Withdraw extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'user_id',
-        'type',
-        'status',
         'amount',
-        'note',
-        'sum',
-        'reference',
+        'method',
+        'title',
+        'number',
+        'status',
     ];
 }

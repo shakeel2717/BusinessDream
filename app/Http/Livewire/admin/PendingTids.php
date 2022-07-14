@@ -185,21 +185,40 @@ final class PendingTids extends PowerGridComponent
         $tid->status = true;
         $tid->save();
 
+        $user = User::find($tid->user_id);
+
         // checking if this user has valid refer
-        if ($tid->user->refer != "default") {
+        if ($user->refer != "default") {
             Log::info("User has valid refer");
 
-            $upliner = User::where('username', $tid->user->refer)->first();
+            $upliner = User::where('username', $user->refer)->first();
             $transaction = new Transaction();
             $transaction->user_id = $upliner->id;
             $transaction->amount = option("referCommision");
             $transaction->status = true;
             $transaction->sum = true;
             $transaction->type = 'reward';
+            $transaction->reference = 'Reward Recieved form ' . $user->username;
             $transaction->save();
-        } else {
-            Log::info("User has not valid refer");
         }
+
+        // inserting deposit transaction
+
+        $transaction = $user->transactions()->create([
+            'amount' => option("fees"),
+            'type' => 'deposit',
+            'status' => true,
+            'sum' => true,
+            'referrence' => 'tid approved',
+        ]);
+
+        $transaction = $user->transactions()->create([
+            'amount' => option("fees"),
+            'type' => 'plan activation',
+            'status' => true,
+            'sum' => false,
+            'referrence' => 'plan activated',
+        ]);
     }
 
 

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class WithdrawController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard.index');
+        return view('user.withdraw.index');
     }
 
     /**
@@ -36,7 +35,39 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric|min:10',
+            'method' => 'required|string',
+            'title' => 'required|string',
+            'number' => 'required|',
+            'note' => 'nullable|string',
+        ]);
+
+        // checking if balance is enough
+        if ($validatedData['amount'] > balance(auth()->user()->id)) {
+            return redirect()->back()->withErrors('Your balance is not enough');
+        }
+
+        $withdraw = auth()->user()->withdraws()->create([
+            'amount' => $validatedData['amount'],
+            'method' => $validatedData['method'],
+            'title' => $validatedData['title'],
+            'number' => $validatedData['number'],
+            'note' => $validatedData['note'],
+        ]);
+
+
+        $transaction = auth()->user()->transactions()->create([
+            'amount' => $validatedData['amount'],
+            'type' => 'withdraw',
+            'status' => false,
+            'sum' => 'out',
+            'referrence' => $withdraw->id,
+        ]);
+
+
+
+        return redirect()->back()->with('success', 'Withdraw request has been sent');
     }
 
     /**

@@ -3,7 +3,7 @@
     <ul class="menu-nav nav">
         <li class="nav-header"><span class="nav-label">Dashboard</span></li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.dashboard.index') }}">
+            <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
                 <span class="shape1"></span>
                 <span class="shape2"></span>
                 <i class="ti-layout sidemenu-icon menu-icon "></i>

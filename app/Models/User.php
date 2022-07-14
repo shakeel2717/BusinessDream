@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\user\Withdraw;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,5 +55,17 @@ class User extends Authenticatable
     public function tid()
     {
         return $this->hasOne(Tid::class);
+    }
+
+
+    public function withdraws()
+    {
+        return $this->hasMany(Withdraw::class);
+    }
+
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
