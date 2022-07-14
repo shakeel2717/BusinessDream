@@ -54,6 +54,15 @@ class ProductController extends Controller
             'amount' => $product->price * $validatedData['quantity'],
         ]);
 
+        $transaction = auth()->user()->transactions()->create([
+            'type' => 'shopping',
+            'amount' => $product->price * $validatedData['quantity'],
+            'refernce' => $order->id,
+            'status' => true,
+            'sum' => false,
+            'note' => $product->title . " Product Purchased",
+        ]);
+
         return redirect()->route('user.product.index')->with('success', 'Order placed successfully');
     }
 

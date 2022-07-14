@@ -52,7 +52,7 @@
     <ul class="menu-nav nav">
         <li class="nav-header"><span class="nav-label">E-Commerce</span></li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.report.users') }}">
+            <a class="nav-link" href="{{ route('admin.product.index') }}">
                 <span class="shape1"></span>
                 <span class="shape2"></span>
                 <i class="ti-layout sidemenu-icon menu-icon "></i>

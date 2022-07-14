@@ -6,10 +6,6 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title">@yield('title')</h2>
-                    <div class="card border border-primary p-3 mb-3 bg-primary">
-                        <h3 class="mb-0">Current Balance: {{ env('APP_CURRENCY') }}
-                            {{ number_format(balance(auth()->user()->id, 2)) }}</h3>
-                    </div>
                     <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
