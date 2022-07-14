@@ -1,22 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\admin;
+namespace App\Http\Livewire\user;
 
 use App\Models\Tid;
-use App\Models\Transaction;
-use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Log;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
-final class PendingTids extends PowerGridComponent
+final class AllTids extends PowerGridComponent
 {
     use ActionButton;
-
-    public $tid;
 
     /*
     |--------------------------------------------------------------------------
@@ -55,10 +50,7 @@ final class PendingTids extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Tid::query()
-            ->join('users', 'users.id', '=', 'tids.user_id')
-            ->select('tids.*', 'users.name as user_name')
-            ->where('tids.status', false);
+        return Tid::query()->where('user_id', auth()->user()->id);
     }
 
     /*
@@ -76,11 +68,7 @@ final class PendingTids extends PowerGridComponent
      */
     public function relationSearch(): array
     {
-        return [
-            "User" => [
-                "name",
-            ],
-        ];
+        return [];
     }
 
     /*
@@ -94,7 +82,6 @@ final class PendingTids extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('user_id')
             ->addColumn('tid')
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Tid $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
@@ -118,11 +105,10 @@ final class PendingTids extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('USER ID', 'user_name', 'user_id'),
-
             Column::make('TID', 'tid')
-                ->makeInputRange()
-                ->editOnClick(),
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
 
             Column::make('STATUS', 'status')
                 ->toggleable(),
@@ -154,87 +140,21 @@ final class PendingTids extends PowerGridComponent
      * @return array<int, Button>
      */
 
-
+    /*
     public function actions(): array
     {
-        return [
-            //    Button::make('edit', 'Edit')
-            //        ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-            //        ->route('tid.edit', ['tid' => 'id']),
+       return [
+           Button::make('edit', 'Edit')
+               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+               ->route('tid.edit', ['tid' => 'id']),
 
-            //    Button::make('destroy', 'Delete')
-            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-            //        ->route('tid.destroy', ['tid' => 'id'])
-            //        ->method('delete')
-
-            Button::add('destroy')
-                ->caption("Approve")
-                ->class('btn btn-sm btn-success')
-                ->emit('approveTid', ['id' => 'id'])
+           Button::make('destroy', 'Delete')
+               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+               ->route('tid.destroy', ['tid' => 'id'])
+               ->method('delete')
         ];
     }
-
-    protected function getListeners()
-    {
-        return 'approveTid';
-    }
-
-    public function approveTid($id)
-    {
-        $tid = Tid::find($id['id']);
-        $tid->status = true;
-        $tid->save();
-
-        $user = User::find($tid->user_id);
-        $user->status = true;
-        $user->save();
-
-        // checking if this user has valid refer
-        if ($user->refer != "default") {
-            Log::info("User has valid refer");
-
-            $upliner = User::where('username', $user->refer)->first();
-            $transaction = new Transaction();
-            $transaction->user_id = $upliner->id;
-            $transaction->amount = option("referCommision");
-            $transaction->status = true;
-            $transaction->sum = true;
-            $transaction->type = 'reward';
-            $transaction->reference = 'Reward Recieved form ' . $user->username;
-            $transaction->save();
-        }
-
-        // inserting deposit transaction
-
-        $transaction = $user->transactions()->create([
-            'amount' => option("fees"),
-            'type' => 'deposit',
-            'status' => true,
-            'sum' => true,
-            'referrence' => 'tid approved',
-        ]);
-
-        $transaction = $user->transactions()->create([
-            'amount' => option("fees"),
-            'type' => 'plan activation',
-            'status' => true,
-            'sum' => false,
-            'referrence' => 'plan activated',
-        ]);
-    }
-
-
-    public function onUpdatedEditable($id, $field, $value): void
-    {
-        Tid::query()->find($id)->update([
-            $field => $value,
-        ]);
-    }
-
-
-
-
-
+    */
 
     /*
     |--------------------------------------------------------------------------
