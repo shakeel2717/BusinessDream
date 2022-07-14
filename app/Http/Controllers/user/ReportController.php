@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -54,19 +55,13 @@ class ReportController extends Controller
 
     public function tree($user = null)
     {
+        if ($user != null) {
+            $user = User::find($user);
+        } else {
+            $user = User::find(auth()->user()->id);
+        }
         return view('user.report.tree', compact('user'));
     }
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Display a listing of the resource.
