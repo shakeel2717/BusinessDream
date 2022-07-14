@@ -19,6 +19,11 @@ class ReportController extends Controller
         return view('admin.reports.tids');
     }
 
+    public function orders()
+    {
+        return view('admin.reports.orders');
+    }
+
     public function users()
     {
         return view('admin.reports.users');

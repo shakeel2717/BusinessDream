@@ -13,5 +13,6 @@ Route::prefix('admin')->middleware('auth', 'admin')->name('admin.')->group(funct
         Route::get('/tids/all', 'allTids')->name('all.tids');
         Route::get('/users', 'users')->name('users');
         Route::get('/methods', 'methods')->name('methods');
+        Route::get('/orders', 'orders')->name('orders');
     });
 });

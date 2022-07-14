@@ -67,6 +67,14 @@
                 <span class="sidemenu-label">Add new Products</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.report.orders') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">All Orders</span>
+            </a>
+        </li>
     </ul>
     <div class="slide-right" id="slide-right"><i class="fe fe-chevron-right"></i></div>
 </div>
