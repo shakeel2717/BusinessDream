@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\PlanActivateController;
 use App\Http\Controllers\user\ProductController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\user\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::redirect('/', '/user/dashboard');
+Route::get('/', [LandingPageController::class, 'index'])->name('landing-page');
 
 Route::prefix('user')->middleware('auth', 'user')->name('user.')->group(function () {
     Route::resource('dashboard', DashboardController::class);
