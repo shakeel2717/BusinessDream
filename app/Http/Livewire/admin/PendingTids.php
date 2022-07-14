@@ -192,16 +192,18 @@ final class PendingTids extends PowerGridComponent
         // checking if this user has valid refer
         if ($user->refer != "default") {
             Log::info("User has valid refer");
-
             $upliner = User::where('username', $user->refer)->first();
-            $transaction = new Transaction();
-            $transaction->user_id = $upliner->id;
-            $transaction->amount = option("referCommision");
-            $transaction->status = true;
-            $transaction->sum = true;
-            $transaction->type = 'reward';
-            $transaction->reference = 'Reward Recieved form ' . $user->username;
-            $transaction->save();
+            // checking if this both side are refered, not free
+            if ($upliner->right != "free" && $upliner->left != "free") {
+                $transaction = new Transaction();
+                $transaction->user_id = $upliner->id;
+                $transaction->amount = option("referCommision");
+                $transaction->status = true;
+                $transaction->sum = true;
+                $transaction->type = 'reward';
+                $transaction->reference = 'Reward Recieved form ' . $user->username;
+                $transaction->save();
+            }
         }
 
         // inserting deposit transaction
