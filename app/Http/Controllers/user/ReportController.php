@@ -53,6 +53,11 @@ class ReportController extends Controller
     }
 
 
+    public function orders()
+    {
+        return view('user.report.order');
+    }
+
     public function tree($user = null)
     {
         if ($user != null) {

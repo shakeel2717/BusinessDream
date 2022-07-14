@@ -23,6 +23,7 @@ Route::prefix('user')->middleware('auth', 'user')->name('user.')->group(function
         Route::get('/plan', 'plan')->name('plan');
         Route::get('/refers', 'refers')->name('refers');
         Route::get('/tree/{user?}', 'tree')->name('tree');
+        Route::get('/orders', 'orders')->name('orders');
     });
     Route::resource('product', ProductController::class);
 });
