@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <livewire:admin.pending-withdraw/>
+            <livewire:admin.withdrawals/>
         </div>
     </div>
 @endsection
