@@ -20,7 +20,7 @@
     @powerGridStyles
 </head>
 
-<body class="ltr main-body leftmenu">
+<body class="ltr main-body leftmenu light-theme light-menu">
     <div class="page">
         <div class="main-header side-header sticky">
             <div class="main-container container-fluid">
@@ -83,8 +83,8 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         <div class="header-navheading">
-                                            <h6 class="main-notification-title">Sonia Taylor</h6>
-                                            <p class="main-notification-text">Web Designer</p>
+                                            <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
+                                            <p class="main-notification-text">{{ auth()->user()->status ? "Active" : "In Active" }}</p>
                                         </div>
                                         <a class="dropdown-item border-top" href="profile.html">
                                             <i class="fe fe-user"></i> My Profile
