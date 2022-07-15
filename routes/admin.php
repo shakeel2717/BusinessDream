@@ -14,5 +14,7 @@ Route::prefix('admin')->middleware('auth', 'admin')->name('admin.')->group(funct
         Route::get('/users', 'users')->name('users');
         Route::get('/methods', 'methods')->name('methods');
         Route::get('/orders', 'orders')->name('orders');
+        Route::get('/withdraw', 'withdraw')->name('withdraw');
+        Route::get('/withdraw/pending', 'withdrawPending')->name('withdraw.pending');
     });
 });

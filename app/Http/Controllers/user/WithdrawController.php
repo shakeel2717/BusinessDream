@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
@@ -56,13 +57,23 @@ class WithdrawController extends Controller
             'note' => $validatedData['note'],
         ]);
 
+        // $transaction = new Transaction();
+        // $transaction->user_id = auth()->user()->id;
+        // $transaction->amount = $validatedData['amount'];
+        // $transaction->type = 'withdraw';
+        // $transaction->status = false;
+        // $transaction->sum = 'out';
+        // $transaction->reference = $withdraw->id;
+        // $transaction->save();
+
+
 
         $transaction = auth()->user()->transactions()->create([
             'amount' => $validatedData['amount'],
             'type' => 'withdraw',
             'status' => false,
-            'sum' => 'out',
-            'referrence' => $withdraw->id,
+            'sum' => false,
+            'reference' => $withdraw->id,
         ]);
 
 

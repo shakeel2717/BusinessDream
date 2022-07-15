@@ -47,6 +47,22 @@
                 <span class="sidemenu-label">All Methods</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.report.withdraw') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">All Withdrawals</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.report.withdraw.pending') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">Pending Withdrawals</span>
+            </a>
+        </li>
     </ul>
     <div class="slide-left disabled" id="slide-left"><i class="fe fe-chevron-left"></i></div>
     <ul class="menu-nav nav">

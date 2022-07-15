@@ -14,6 +14,17 @@ class ReportController extends Controller
     }
 
 
+    public function withdraw()
+    {
+        return view('admin.reports.withdraw');
+    }
+
+
+    public function withdrawPending()
+    {
+        return view('admin.reports.withdrawPending');
+    }
+
     public function allTids()
     {
         return view('admin.reports.tids');
