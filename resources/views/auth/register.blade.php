@@ -73,20 +73,16 @@
                                                     <div class="table">
                                                         <table>
                                                             <tr>
-                                                                <th>Name</th>
-                                                                <td>{{ $method->name }}</td>
+                                                                <td>Name:{{ $method->name }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <th>Account Number</th>
-                                                                <td>{{ $method->number }}</td>
+                                                                <td>Account Number:{{ $method->number }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <th>Account Title</th>
-                                                                <td>{{ $method->title }}</td>
+                                                                <td>Account Title:{{ $method->title }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <th>Recieving Number</th>
-                                                                <td>{{ $method->r_number }}</td>
+                                                                <td>Recieving Number:{{ $method->r_number }}</td>
                                                             </tr>
                                                         </table>
                                                     </div>
