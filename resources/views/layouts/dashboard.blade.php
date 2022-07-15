@@ -28,10 +28,10 @@
                     <a class="main-header-menu-icon" href="javascript:void(0)" id="mainSidebarToggle"><span></span></a>
                     <div class="hor-logo">
                         <a class="main-logo" href="index.html">
-                            <img src="{{ asset('assets/img/brand/logo.png"') }}" class="header-brand-img desktop-logo"
-                                alt="logo">
-                            <img src="{{ asset('assets/img/brand/logo-light.png"') }}" class="header-brand-img desktop-logo-dark"
-                                alt="logo">
+                            <img src="{{ asset('assets/img/brand/logo.png"') }}"
+                                class="header-brand-img desktop-logo" alt="logo">
+                            <img src="{{ asset('assets/img/brand/logo-light.png"') }}"
+                                class="header-brand-img desktop-logo-dark" alt="logo">
                         </a>
                     </div>
                 </div>
@@ -79,18 +79,22 @@
                                 <div class="dropdown main-profile-menu">
                                     <a class="d-flex" href="javascript:void(0)">
                                         <span class="main-img-user"><img alt="avatar"
-                                                src="{{ asset('assets/img/users/1.jpg') }}"></span>
+                                                src="{{ asset('assets/icon/user.png') }}"></span>
                                     </a>
                                     <div class="dropdown-menu">
                                         <div class="header-navheading">
                                             <h6 class="main-notification-title">{{ auth()->user()->name }}</h6>
-                                            <p class="main-notification-text">{{ auth()->user()->status ? "Active" : "In Active" }}</p>
+                                            <p class="main-notification-text">
+                                                {{ auth()->user()->status ? 'Active' : 'In Active' }}</p>
                                         </div>
-                                        <a class="dropdown-item border-top" href="profile.html">
+                                        <a class="dropdown-item border-top" href="{{ route('user.profile.index') }}">
                                             <i class="fe fe-user"></i> My Profile
                                         </a>
-                                        <a class="dropdown-item" href="profile.html">
+                                        <a class="dropdown-item" href="{{ route('user.profile.index') }}">
                                             <i class="fe fe-edit"></i> Edit Profile
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('user.profile.password') }}">
+                                            <i class="fe fe-edit"></i> Change Password
                                         </a>
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf

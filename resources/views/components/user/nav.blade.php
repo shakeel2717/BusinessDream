@@ -28,6 +28,23 @@
                 <span class="sidemenu-label">Withdraw Request</span>
             </a>
         </li>
+        <li class="nav-header"><span class="nav-label">Account Settings</span></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.profile.index') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">My Profile</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.profile.password') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">Change Password</span>
+            </a>
+        </li>
         <li class="nav-header"><span class="nav-label">Reports</span></li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.report.transactions') }}">
