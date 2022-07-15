@@ -62,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('asdfasdf'),
             'whatsapp' => '03037702700',
+            'status' => true,
             'role' => 'admin',
         ]);
 

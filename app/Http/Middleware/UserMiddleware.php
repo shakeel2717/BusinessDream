@@ -16,6 +16,12 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (auth()->user()->status == false) {
+            auth()->logout();
+            return redirect()->route('login')->withErrors(['Your account is not active']);
+
+        }
+
         if (auth()->user()->role == "user") {
             return $next($request);
         } elseif (auth()->user()->role == 'admin') {

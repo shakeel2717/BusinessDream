@@ -111,7 +111,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
+
+
+        session(['register' => true]);
 
         $user->tid()->create([
             'tid' => $request->tid,
