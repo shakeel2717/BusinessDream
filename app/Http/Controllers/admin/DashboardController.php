@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tid;
 use App\Models\User;
+use App\Models\user\UserPlan;
+use App\Models\user\Withdraw;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,7 +20,9 @@ class DashboardController extends Controller
     {
         $users = User::get();
         $tids = Tid::get();
-        return view('admin.index', compact('users','tids'));
+        $userPlan = UserPlan::get();
+        $withdraw = Withdraw::get();
+        return view('admin.index', compact('users', 'tids', 'userPlan', 'withdraw'));
     }
 
     /**

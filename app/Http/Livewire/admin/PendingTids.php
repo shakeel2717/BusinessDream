@@ -5,6 +5,7 @@ namespace App\Http\Livewire\admin;
 use App\Models\Tid;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\user\UserPlan;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
@@ -223,6 +224,13 @@ final class PendingTids extends PowerGridComponent
             'sum' => false,
             'referrence' => 'plan activated',
         ]);
+
+        // activating user Plan
+        $UserPlan = new UserPlan();
+        $UserPlan->user_id = $user->id;
+        $UserPlan->amount = option("fees");
+        $UserPlan->status = true;
+        $UserPlan->save();
     }
 
 

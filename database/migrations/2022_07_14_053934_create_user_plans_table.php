@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('user_plans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->boolean('status')->default(true);
+            $table->float('amount')->default(0);
             $table->timestamps();
         });
     }
