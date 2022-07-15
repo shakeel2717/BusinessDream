@@ -53,7 +53,8 @@ final class PendingWithdraw extends PowerGridComponent
     {
         return Withdraw::query()
             ->join('users', 'users.id', '=', 'withdraws.user_id')
-            ->select('withdraws.*', 'users.username');
+            ->select('withdraws.*', 'users.username')
+            ->where('withdraws.status', false);
     }
 
     /*
