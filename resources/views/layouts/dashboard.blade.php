@@ -87,15 +87,15 @@
                                             <p class="main-notification-text">
                                                 {{ auth()->user()->status ? 'Active' : 'In Active' }}</p>
                                         </div>
-                                        <a class="dropdown-item border-top" href="{{ route('user.profile.index') }}">
+                                        {{-- <a class="dropdown-item border-top" href="{{ route('user.profile.index') }}">
                                             <i class="fe fe-user"></i> My Profile
                                         </a>
                                         <a class="dropdown-item" href="{{ route('user.profile.index') }}">
                                             <i class="fe fe-edit"></i> Edit Profile
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('user.profile.password') }}">
+                                        </a> --}}
+                                        {{-- <a class="dropdown-item" href="{{ route('user.profile.password') }}">
                                             <i class="fe fe-edit"></i> Change Password
-                                        </a>
+                                        </a> --}}
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button class="dropdown-item"><i class="fe fe-power"></i> Sign
@@ -145,9 +145,9 @@
                         </div>
                         <div class="d-flex">
                             <div class="justify-content-center">
-                                <button type="button" class="btn btn-primary my-2 btn-icon-text">
+                                <a href="{{ route('user.report.tree') }}" class="btn btn-primary my-2 btn-icon-text">
                                     <i class="fe fe-users me-2"></i> Marketing Section
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

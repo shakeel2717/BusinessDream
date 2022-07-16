@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\JoinController;
 use App\Http\Controllers\user\PlanActivateController;
 use App\Http\Controllers\user\ProductController;
 use App\Http\Controllers\user\ProfileController;
@@ -16,6 +17,7 @@ Route::prefix('user')->middleware('auth', 'user')->name('user.')->group(function
     Route::resource('dashboard', DashboardController::class);
     Route::resource('plan', PlanActivateController::class);
     Route::resource('withdraw', WithdrawController::class);
+    Route::resource('join', JoinController::class);
     Route::get('profile/password', [ProfileController::class, 'password'])->name('profile.password');
     Route::post('profile/password', [ProfileController::class, 'passwordStore'])->name('profile.password.update');
     Route::resource('profile', ProfileController::class);

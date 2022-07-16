@@ -10,13 +10,13 @@
                 <span class="sidemenu-label">Overview</span>
             </a>
         </li>
-        <li class="nav-header"><span class="nav-label">Plan Activation</span></li>
+        <li class="nav-header"><span class="nav-label">Activation</span></li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.plan.index') }}">
+            <a class="nav-link" href="{{ route('user.join.index') }}">
                 <span class="shape1"></span>
                 <span class="shape2"></span>
                 <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">Package Activate</span>
+                <span class="sidemenu-label">Join A User</span>
             </a>
         </li>
         <li class="nav-header"><span class="nav-label">Payout</span></li>
@@ -28,78 +28,13 @@
                 <span class="sidemenu-label">Withdraw Request</span>
             </a>
         </li>
-        <li class="nav-header"><span class="nav-label">Account Settings</span></li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.profile.index') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">My Profile</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.profile.password') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">Change Password</span>
-            </a>
-        </li>
         <li class="nav-header"><span class="nav-label">Reports</span></li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.report.transactions') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All Transactions</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.report.deposit') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All Deposits</span>
-            </a>
-        </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.report.withdraw') }}">
                 <span class="shape1"></span>
                 <span class="shape2"></span>
                 <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All Withdrawals</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.report.withdraw.pending') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All Pending Withdrawals</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.report.tids') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All Tids</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.report.plan') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All Plans</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.report.refers') }}">
-                <span class="shape1"></span>
-                <span class="shape2"></span>
-                <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">All Refer</span>
+                <span class="sidemenu-label">Payment Received History</span>
             </a>
         </li>
         <li class="nav-item">
@@ -107,9 +42,10 @@
                 <span class="shape1"></span>
                 <span class="shape2"></span>
                 <i class="ti-layout sidemenu-icon menu-icon "></i>
-                <span class="sidemenu-label">Refer Tree</span>
+                <span class="sidemenu-label">Tree View</span>
             </a>
         </li>
+
         <li class="nav-header"><span class="nav-label">E-Commerce</span></li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.product.index') }}">

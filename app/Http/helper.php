@@ -20,6 +20,26 @@ function isActive($user_id)
     return $user->status;
 }
 
+function generateReferLinksUser($user_id, $position)
+{
+    Log::info('Boot');
+    $user = User::find($user_id);
+    $downline = User::where('username', $user->$position)->first();
+    if ($position == 'left') {
+        if ($downline->left == "free") {
+            return ['user' => $downline->username, 'position' => 'left'];
+        } else {
+            return generateReferLinksUser($downline->id, $position);
+        }
+    } elseif ($position == 'right') {
+        if ($downline->right == "free") {
+            return ['user' => $downline->username, 'position' => 'right'];
+        } else {
+            return generateReferLinksUser($downline->id, $position);
+        }
+    }
+}
+
 function generateReferLinks($user_id)
 {
     $user = User::find($user_id);
