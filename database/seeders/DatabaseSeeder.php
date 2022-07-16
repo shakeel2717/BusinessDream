@@ -82,13 +82,18 @@ class DatabaseSeeder extends Seeder
 
         Option::updateOrCreate([
             'name' => 'fees',
-            'value' => 630,
+            'value' => 650,
         ]);
 
 
         Option::updateOrCreate([
             'name' => 'referCommision',
             'value' => 250,
+        ]);
+
+        Option::updateOrCreate([
+            'name' => 'referCommisionLevel2',
+            'value' => 200,
         ]);
     }
 }

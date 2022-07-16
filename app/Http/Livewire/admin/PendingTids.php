@@ -204,6 +204,20 @@ final class PendingTids extends PowerGridComponent
                 $transaction->type = 'reward';
                 $transaction->reference = 'Reward Recieved form ' . $user->username;
                 $transaction->save();
+
+
+                // checking in downline
+                $uplinerTwo = User::where('username', $upliner->refer)->first();
+                if ($uplinerTwo->right != "free" && $uplinerTwo->left != "free") {
+                    $transaction = new Transaction();
+                    $transaction->user_id = $uplinerTwo->id;
+                    $transaction->amount = option("referCommisionLevel2");
+                    $transaction->status = true;
+                    $transaction->sum = true;
+                    $transaction->type = 'reward';
+                    $transaction->reference = 'Reward Recieved form ' . $user->username;
+                    $transaction->save();
+                }
             }
         }
 
