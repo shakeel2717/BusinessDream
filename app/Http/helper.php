@@ -29,9 +29,7 @@ function generateReferLinks($user_id)
     } elseif ($user->right == 'free') {
         return positionFoundFree($user->username, "right");
     } else {
-        // getting left user Id
-        $left_user_id = User::where('username', $user->left)->first();
-        generateReferLinks($left_user_id->id);
+        return "You not have Free Space in your downline, Please Refer new Sponser to your donwline team. ";
     }
 }
 

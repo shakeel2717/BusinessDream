@@ -10,7 +10,7 @@
             <x-card-state value="{{ 0 }}" icon="users" heading="TOTAL Referrals" />
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-            <x-card-state value="{{ 0 }}" icon="wallet" heading="TOTAL PAYOUT" />
+            <x-card-state value="{{ number_format(auth()->user()->transactions->where('type','withdraw')->where('sum',false)->sum('amount'),2) }}" icon="wallet" heading="TOTAL PAYOUT" />
         </div>
     </div>
     <div class="row">
