@@ -44,7 +44,7 @@
                         <a class="main-header-menu-icon" href="javascript:void(0)"
                             id="mainSidebarToggle"><span></span></a>
                         <div class="hor-logo">
-                            <a class="main-logo" href="index.html">
+                            <a class="main-logo" href="{{ route('landing-page') }}">
                                 <img src="{{ asset('assets/img/brand/logo.png') }}"
                                     class="header-brand-img desktop-logo" alt="logo">
                             </a>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="main-header-center">
                         <div class="responsive-logo">
-                            <a href="index.html"><img src="{{ asset('assets/img/brand/logo.png') }}"
+                            <a href="{{ route('landing-page') }}"><img src="{{ asset('assets/img/brand/logo.png') }}"
                                     class="mobile-logo" alt="logo"></a>
                         </div>
                     </div>
@@ -68,11 +68,11 @@
                                 <div class="d-flex order-lg-2 ms-auto">
                                     <!-- SEARCH -->
                                     <div class="header-nav-right p-3">
-                                        <a href="signin.html" class="btn ripple btn-min w-sm btn-outline-primary me-2"
-                                            target="_blank">New User
+                                        <a href="{{ route('register') }}"
+                                            class="btn ripple btn-min w-sm btn-outline-primary me-2">New User
                                         </a>
-                                        <a href="signup.html" class="btn ripple btn-min w-sm btn-primary me-2"
-                                            target="_blank">Login
+                                        <a href="{{ route('login') }}"
+                                            class="btn ripple btn-min w-sm btn-primary me-2">Login
                                         </a>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="main-sidemenu navbar px-0">
-                                    <a class="main-logo" href="index.html">
+                                    <a class="main-logo" href="{{ route('landing-page') }}">
                                         <img src="{{ asset('assets/img/brand/logo-light.png') }}" class=""
                                             width="250" alt="logo">
                                     </a>
@@ -108,14 +108,14 @@
                                                     class="side-menu__label">Home</span></a>
                                         </li>
                                         <li class="slide">
-                                            <a class="side-menu__item" data-bs-toggle="slide"
-                                                href="{{ route('register') }}"><span
-                                                    class="side-menu__label">Create Account</span></a>
+                                            <a class="side-menu__item" href="{{ route('register') }}"><span
+                                                    class="side-menu__label">Create Account</span>
+                                            </a>
                                         </li>
                                         <li class="slide">
-                                            <a class="side-menu__item" data-bs-toggle="slide"
-                                                href="{{ route('login') }}"><span class="side-menu__label">Sign
-                                                    in</span></a>
+                                            <a class="side-menu__item" href="{{ route('login') }}"><span
+                                                    class="side-menu__label">Sign in</span>
+                                            </a>
                                         </li>
                                     </ul>
                                     <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg"
@@ -149,12 +149,12 @@
                                     We invest in Dubai Stock Exchange. We have been Working on the Dubai Stock Exchange
                                     since 2013. If you want to see our Stock Exchange Portfolio then contact us on
                                     Whatsapp.</h6>
-                                <a href="{{ route('register') }}" target="_blank"
+                                <a href="{{ route('register') }}"
                                     class="btn ripple btn-min w-lg mb-3 me-2 btn-light"><i
                                         class="fe fe-play me-2"></i> Get Started
                                 </a>
                                 <a href="{{ route('login') }}"
-                                    class="btn ripple btn-min w-lg btn-outline-light mb-3 me-2" target="_blank"><i
+                                    class="btn ripple btn-min w-lg btn-outline-light mb-3 me-2"><i
                                         class="fe fe-eye me-2"></i>Sign in
                                 </a>
                             </div>
@@ -844,7 +844,7 @@
                                     </div>
                                     <div class="col-lg-4 col-sm-12 col-md-4 reveal revealleft">
                                         <div class="">
-                                            <a href="index.html"><img loading="lazy" alt=""
+                                            <a href="{{ route('landing-page') }}"><img loading="lazy" alt=""
                                                     class="logo mb-3"
                                                     src="{{ asset('') }}assets/img/brand/logo-light.png"></a>
                                             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
@@ -931,7 +931,7 @@
     <script src="{{ asset('assets/js/sticky.js') }}"></script>
 
     <!-- CUSTOM JS -->
-    <script src="{{ asset('assets/landing/js/landing.js') }}"></script>
+    <script src="{{ asset('assets/landing/js/landing.js?v=1') }}"></script>
 
 </body>
 
