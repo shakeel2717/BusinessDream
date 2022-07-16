@@ -23,7 +23,6 @@
                                         <p class="mb-0">{{ $user->email }}</p>
                                         @if ($user->id != auth()->user()->id)
                                             <p class="mb-0">Whatsapp:{{ $user->whatsapp }}</p>
-                                            <p class="mb-0">{{ generateReferLinks($user->id) }}</p>
                                         @endif
                                         <p class="mt-0 text-{{ $user->status ? 'success' : 'danger' }}">
                                             ({{ $user->status ? 'Active' : 'InActive' }})
