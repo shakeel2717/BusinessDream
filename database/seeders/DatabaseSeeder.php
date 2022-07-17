@@ -90,5 +90,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'referCommision',
             'value' => 250,
         ]);
+
+
+        Option::updateOrCreate([
+            'name' => 'referCommisionLevel2',
+            'value' => 200,
+        ]);
     }
 }

@@ -195,7 +195,10 @@ final class PendingTids extends PowerGridComponent
             Log::info("User has valid refer");
             $upliner = User::where('username', $user->refer)->first();
             // checking if this both side are refered, not free
-            if ($upliner->right != "free" && $upliner->left != "free") {
+            // getting Right side refer
+            $rightSideRefer = User::where('username', $upliner->right)->first();
+            $leftSideRefer = User::where('username', $upliner->left)->first();
+            if ($upliner->right != "free" && $rightSideRefer->status == true && $upliner->left != "free" && $leftSideRefer->status == true) {
                 $transaction = new Transaction();
                 $transaction->user_id = $upliner->id;
                 $transaction->amount = option("referCommision");
@@ -204,6 +207,18 @@ final class PendingTids extends PowerGridComponent
                 $transaction->type = 'reward';
                 $transaction->reference = 'Reward Recieved form ' . $user->username;
                 $transaction->save();
+                // checking in downline
+                $uplinerTwo = User::where('username', $upliner->refer)->first();
+                if ($upliner->refer != "default" && $uplinerTwo->right != "free" && $uplinerTwo->left != "free") {
+                    $transaction = new Transaction();
+                    $transaction->user_id = $uplinerTwo->id;
+                    $transaction->amount = option("referCommisionLevel2");
+                    $transaction->status = true;
+                    $transaction->sum = true;
+                    $transaction->type = 'reward';
+                    $transaction->reference = 'Reward Recieved form ' . $user->username;
+                    $transaction->save();
+                }
             }
         }
 

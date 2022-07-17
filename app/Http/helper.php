@@ -20,6 +20,33 @@ function isActive($user_id)
     return $user->status;
 }
 
+function generateReferLinksUser($user_id)
+{
+    $user = User::find($user_id);
+    if ($user->left == "free") {
+        return ['user' => $user->username, 'position' => 'left'];
+    } elseif ($user->right == "free") {
+        return ['user' => $user->username, 'position' => 'right'];
+    } else {
+        // getting the left downline
+        $downline = User::where('username', $user->left)->first();
+        if ($downline->left == "free") {
+            return ['user' => $downline->username, 'position' => 'left'];
+        } elseif ($downline->right == "free") {
+            return ['user' => $downline->username, 'position' => 'right'];
+        } else {
+            $downlineRight = User::where('username', $user->right)->first();
+            if ($downlineRight->left == "free") {
+                return ['user' => $downlineRight->username, 'position' => 'left'];
+            } elseif ($downlineRight->right == "free") {
+                return ['user' => $downlineRight->username, 'position' => 'right'];
+            } else {
+                return generateReferLinksUser($downlineRight->id);
+            }
+        }
+    }
+}
+
 function generateReferLinks($user_id)
 {
     $user = User::find($user_id);
@@ -71,6 +98,14 @@ function myRightUsers($user_id)
         }
     }
     return $count;
+}
+
+
+function totalRefers($user_id)
+{
+    $user = User::find($user_id);
+    $refers = User::where('refer', $user->username)->get();
+    return $refers;
 }
 
 

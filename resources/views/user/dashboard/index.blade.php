@@ -91,13 +91,13 @@
 
                             <div class="input-group">
                                 <input type="text" class="form-control input-lg" id="refer_link"
-                                    value="{{ generateReferLinks(auth()->user()->id) }}">
+                                    value="{{ route('register',['refer' => auth()->user()->username]) }}">
                                 <div class="input-group-prepend">
                                     <button id="copyClipboard" class="clipboard-icon">COPY</button>
                                 </div>
                             </div>
                             <div class="row row-sm px-4 mt-3">
-                                <div class="col-lg-4 col-xl-4">
+                                {{-- <div class="col-lg-4 col-xl-4">
                                     <div class="card border custom-card">
                                         <div class="card-body">
                                             <div class="d-flex">
@@ -127,7 +127,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-4 col-xl-4">
                                     <div class="card border custom-card">
                                         <div class="card-body">
@@ -137,7 +137,7 @@
                                                 <div class="">
                                                     <p class="text-uppercase tx-13 text-muted mb-1">Total Members</p>
                                                     <h5 class="">
-                                                        {{ myLeftUsers(auth()->user()->id) + myRightUsers(auth()->user()->id) }}
+                                                        {{ totalRefers(auth()->user()->id)->count() }}
                                                         <span class="tx-14 text-muted font-weight-normal ms-1">BTC</span></h5>
                                                 </div>
                                             </div>
