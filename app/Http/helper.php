@@ -61,9 +61,9 @@ function generateReferLinks($user_id)
 }
 
 
-function positionFoundFree($refer, $position)
+function positionFoundFree($refer)
 {
-    $route = route('register', ['position' => $position, 'refer' => $refer]);
+    $route = route('register', ['refer' => $refer]);
     $converted = Str::lower($route);
     echo $converted;
     return;
