@@ -166,10 +166,10 @@ class DatabaseSeeder extends Seeder
         //     'whatsapp' => '03037702717',
         // ]);
 
-        Tid::updateOrCreate([
-            'user_id' => $user->id,
-            'tid' => rand(00000, 99999),
-        ]);
+        // Tid::updateOrCreate([
+        //     'user_id' => $user->id,
+        //     'tid' => rand(00000, 99999),
+        // ]);
 
 
         Option::updateOrCreate([
