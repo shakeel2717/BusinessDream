@@ -143,12 +143,11 @@
                     <div class="container px-sm-0">
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 animation-zidex pos-relative">
-                                <h4 class="fw-semibold mt-7">Manage Your Business</h4>
+                                <h4 class="fw-semibold mt-7">Le'ts Earn!</h4>
                                 <h1 class="text-start fw-bold">{{ env('APP_DESC') }}</h1>
                                 <h6 class="pb-3">
-                                    We invest in Dubai Stock Exchange. We have been Working on the Dubai Stock Exchange
-                                    since 2013. If you want to see our Stock Exchange Portfolio then contact us on
-                                    Whatsapp.</h6>
+                                    Best Online Marketing Solution for your online Business, Signup and Get Start Earning with us.
+                                   </h6>
                                 <a href="{{ route('register') }}"
                                     class="btn ripple btn-min w-lg mb-3 me-2 btn-light"><i
                                         class="fe fe-play me-2"></i> Get Started
@@ -177,9 +176,7 @@
                                 <h4 class="text-center fw-semibold landing-card-header">Features</h4>
                                 <span class="landing-title"></span>
                                 <h2 class="fw-semibold text-center">{{ env('APP_NAME') }} Main Features</h2>
-                                <p class="text-default mb-5 text-center">We invest in Dubai Stock Exchange. We have
-                                    been Working on the Dubai Stock Exchange since 2013. <br> If you want to see our
-                                    Stock Exchange Portfolio then contact us on Whatsapp.</p>
+                                <p class="text-default mb-5 text-center">NBD (New Business Dream) Ye Ek Pakistani Company Hai Aur Humara Plane Har Pakistani Berozgar Ko Rozgar Dena Yaha Ap Sirf 650 Rupe Se Register Ho Kar Apna Online Karobar Kar Sakte Hain.</p>
                                 <div class="row mt-7">
                                     <div class="col-lg-3 col-md-12">
                                         <div class="card features main-features main-features-1 wow fadeInUp reveal revealleft"
@@ -400,10 +397,10 @@
                     <div class="section bg-landing working-section" id="About">
                         <div class="container">
                             <div class="row">
-                                <h4 class="text-center fw-semibold landing-card-header">Our Mission</h4>
+                                <h4 class="text-center fw-semibold landing-card-header">About The System</h4>
                                 <span class="landing-title"></span>
                                 <div class="text-center">
-                                    <h2 class="text-center fw-semibold">Our mission is to make work meaningful.
+                                    <h2 class="text-center fw-semibold">How it's Work!
                                     </h2>
                                 </div>
                                 <div class="reveal">
@@ -701,16 +698,8 @@
                                             </div>
                                             <div class="col-xl-8 col-lg-6 col-md-6 col-sm-12">
                                                 <div class="working-content content-1">
-                                                    <h4 class="mb-3">Design Quality </h4>
-                                                    <p class="title-desc text-muted">To inspire people to choose a
-                                                        healthier, greener, more compassionate lifestyle through our
-                                                        {{ env('APP_NAME') }} mission.
-
-                                                        We envision a world where people think critically about their
-                                                        ecological imprint,<br> where growing numbers of businesses,
-                                                        community groups, organisations strive to optimise <br> Yes
-                                                        World Token and increase the cash flow and where sustainable
-                                                        tech- based solutions are accessible to all.</p>
+                                                    <h4 class="mb-3">Quick Support </h4>
+                                                    <p class="title-desc text-muted">Yaha Kam Karna Bht Asan Hai Apko Sirf 2 Members Ko Join Karwana Hai Aur Unko Ache Se Guideline Deni Hai Samjhana Hai K Wo Bhi Aage 2 Member Ko Join Karwaye Jese Apke 2 Members Ban Jayege Apka Kam Start Hojayega Ap Befiqar Ho Kar Kam Karte Jaye Aur Profit Hasil Karte Jaye 1st Pair Means <br> <br> Right/Left Pe Ek Ek Member Lagane Pe 1st Pair Pe Apko 250 Earning Milegi Uske Bad Apke Jitne Pairs Bante Jayege Har Pair Pe Apko 200 Earning Milti Jayegi Jitne Pair Utni Earning Ek Din Me Ap Yaha Se 200 Se Unlimited Earning Kar Sakte Hain Jis Me Rewards Bhi Shamil Hain....</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -747,10 +736,7 @@
                                                                     class="fs-25"><span
                                                                         class="op-0-5 text-muted text-20">/</span>
                                                                     Lifetime</span></p>
-                                                            <p class="fs-13 mb-2">We invest in Dubai Stock Exchange. We
-                                                                have been Working on the Dubai Stock Exchange since
-                                                                2013. If you want to see our Stock Exchange Portfolio
-                                                                then contact us on Whatsapp.</p>
+                                                            <p class="fs-13 mb-2">Best Online Marketing Solution for your online Business, Signup and Get Start Earning with us.</p>
                                                             <p class="fs-13 mb-1 text-primary">Billed monthly on
                                                                 regular basis!</p>
                                                         </div>
