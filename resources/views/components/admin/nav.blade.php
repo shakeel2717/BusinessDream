@@ -40,6 +40,15 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.report.pending.order.tids') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">Pending Order Tids</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.report.methods') }}">
                 <span class="shape1"></span>
                 <span class="shape2"></span>

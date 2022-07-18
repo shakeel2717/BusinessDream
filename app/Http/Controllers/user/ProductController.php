@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\admin\Product;
+use App\Models\Method;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -74,7 +75,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('user.product.show', compact('product'));
+        $methods = Method::where('status', true)->get();
+        return view('user.product.show', compact('product','methods'));
     }
 
     /**

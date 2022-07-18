@@ -1,58 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderTid;
 use Illuminate\Http\Request;
 
-class ReportController extends Controller
+class OrderTidController extends Controller
 {
-
-    public function pendingTids()
-    {
-        return view('admin.reports.pendingTids');
-    }
-
-
-    public function withdraw()
-    {
-        return view('admin.reports.withdraw');
-    }
-
-
-    public function withdrawPending()
-    {
-        return view('admin.reports.withdrawPending');
-    }
-
-    public function allTids()
-    {
-        return view('admin.reports.tids');
-    }
-
-    public function orders()
-    {
-        return view('admin.reports.orders');
-    }
-
-    public function users()
-    {
-        return view('admin.reports.users');
-    }
-
-
-    public function methods()
-    {
-        return view('admin.reports.methods');
-    }
-
-    public function pendingOrderTids()
-    {
-        return view('admin.reports.pendingOrderTids');
-    }
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -81,7 +36,19 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'tid' => 'required|string',
+            'amount' => 'required|string|numeric',
+        ]);
+
+        $OrderTid = new OrderTid();
+        $OrderTid->user_id = auth()->user()->id;
+        $OrderTid->tid = $validated['tid'];
+        $OrderTid->amount = $validated['amount'];
+        $OrderTid->save();
+
+        return redirect()->back()->with('success', 'TID has been submitted, Plesae wait until the admin approve your TID');
+
     }
 
     /**

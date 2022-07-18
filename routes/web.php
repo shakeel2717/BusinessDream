@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\OrderTidController;
 use App\Http\Controllers\user\PlanActivateController;
 use App\Http\Controllers\user\ProductController;
 use App\Http\Controllers\user\ProfileController;
@@ -31,6 +32,7 @@ Route::prefix('user')->middleware('auth', 'user')->name('user.')->group(function
         Route::get('/orders', 'orders')->name('orders');
     });
     Route::resource('product', ProductController::class);
+    Route::resource('order', OrderTidController::class);
 });
 
 require __DIR__ . '/auth.php';

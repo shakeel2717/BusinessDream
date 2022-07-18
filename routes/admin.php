@@ -10,6 +10,7 @@ Route::prefix('admin')->middleware('auth', 'admin')->name('admin.')->group(funct
     Route::resource('product', ProductController::class);
     Route::controller(ReportController::class)->name("report.")->group(function () {
         Route::get('/tids/pending', 'pendingTids')->name('pending.tids');
+        Route::get('/tids/order/pending', 'pendingOrderTids')->name('pending.order.tids');
         Route::get('/tids/all', 'allTids')->name('all.tids');
         Route::get('/users', 'users')->name('users');
         Route::get('/methods', 'methods')->name('methods');
