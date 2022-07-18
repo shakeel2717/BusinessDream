@@ -207,19 +207,50 @@ final class PendingTids extends PowerGridComponent
                 $transaction->type = 'reward';
                 $transaction->reference = 'Reward Recieved form ' . $user->username;
                 $transaction->save();
-                // checking in downline
+
+                Log::info("2nd Level");
                 $uplinerTwo = User::where('username', $upliner->refer)->first();
-                if ($upliner->refer != "default" && $uplinerTwo->right != "free" && $uplinerTwo->left != "free") {
-                    $transaction = new Transaction();
-                    $transaction->user_id = $uplinerTwo->id;
-                    $transaction->amount = option("referCommisionLevel2");
-                    $transaction->status = true;
-                    $transaction->sum = true;
-                    $transaction->type = 'reward';
-                    $transaction->reference = 'Reward Recieved form ' . $user->username;
-                    $transaction->save();
+                if ($uplinerTwo != "") {
+                    Log::info("Upliner Two: " . $uplinerTwo->username);
+                    if ($uplinerTwo->left == $upliner->left) {
+                        $otherSideRefer = User::where('username', $uplinerTwo->left)->first();
+                    } else {
+                        $otherSideRefer = User::where('username', $uplinerTwo->right)->first();
+                    }
+                    Log::info("otherSideRefer: " . $otherSideRefer);
+                    if ($otherSideRefer != "") {
+                        if ($otherSideRefer->left != "free" && $otherSideRefer->right != "free") {
+                            // getting otherside 2 level left and right refers
+                            $otherSideReferLeft = User::where('username', $otherSideRefer->left)->first();
+                            Log::info("otherSideReferLeft: " . $otherSideReferLeft);
+                            $otherSideReferRight = User::where('username', $otherSideRefer->right)->first();
+                            Log::info("otherSideReferRight: " . $otherSideReferRight);
+                            // checking if this both side are refered, not free
+                            if ($otherSideReferLeft->status == true && $otherSideReferRight->status == true) {
+                                Log::info("2nd Level valid refer");
+                                // checking if this both side are refered, not free
+                                $transaction = new Transaction();
+                                $transaction->user_id = $uplinerTwo->id;
+                                $transaction->amount = option("referCommisionLevel2");
+                                $transaction->status = true;
+                                $transaction->sum = true;
+                                $transaction->type = 'reward';
+                                $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                                $transaction->save();
+                                Log::info("2nd Level Succes");
+                            }
+                        }
+                    } else {
+                        Log::info("Empty Data");
+                    }
+                } else {
+                    Log::info("2nd level Invlaid");
                 }
+            } else {
+                Log::info("1st LEvel not Valid");
             }
+        } else {
+            Log::info("User not have Any Refer. Default");
         }
 
         // inserting deposit transaction

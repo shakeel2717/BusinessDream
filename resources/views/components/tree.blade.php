@@ -23,6 +23,7 @@ if ($user->right != 'free') {
                 <div class="user-name mt-3">
                     <a href="{{ route('user.report.tree', ['user' => $leftUser->id]) }}">
                         <p class="mb-0">{{ $leftUser->email }}</p>
+                        <p class="mb-0">{{ $leftUser->name }}</p>
                         <p class="mt-0 text-{{ $leftUser->status ? 'success' : 'danger' }}">
                             ({{ $leftUser->status ? 'Active' : 'InActive' }})
                         </p>
@@ -33,6 +34,7 @@ if ($user->right != 'free') {
                 <div class="user-name mt-3">
                     <a href="{{ route('user.report.tree', ['user' => $leftUser->id]) }}">
                         <p class="mb-0">{{ $leftUser->email }}</p>
+                        <p class="mb-0">{{ $leftUser->name }}</p>
                         <p class="mt-0 text-{{ $leftUser->status ? 'success' : 'danger' }}">
                             ({{ $leftUser->status ? 'Active' : 'InActive' }})
                         </p>
@@ -51,6 +53,7 @@ if ($user->right != 'free') {
                 <div class="user-name mt-3">
                     <a href="{{ route('user.report.tree', ['user' => $rightUser->id]) }}">
                         <p class="mb-0">{{ $rightUser->email }}</p>
+                        <p class="mb-0">{{ $rightUser->name }}</p>
                         <p class="mt-0 text-{{ $rightUser->status ? 'success' : 'danger' }}">
                             ({{ $rightUser->status ? 'Active' : 'InActive' }})
                         </p>
@@ -61,6 +64,7 @@ if ($user->right != 'free') {
                 <div class="user-name mt-3">
                     <a href="{{ route('user.report.tree', ['user' => $rightUser->id]) }}">
                         <p class="mb-0">{{ $rightUser->email }}</p>
+                        <p class="mb-0">{{ $rightUser->name }}</p>
                         <p class="mt-0 text-{{ $rightUser->status ? 'success' : 'danger' }}">
                             ({{ $rightUser->status ? 'Active' : 'InActive' }})
                         </p>
