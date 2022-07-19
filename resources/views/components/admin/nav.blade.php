@@ -100,6 +100,15 @@
                 <span class="sidemenu-label">All Orders</span>
             </a>
         </li>
+        <li class="nav-header"><span class="nav-label">Website Setting</span></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.report.options') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">All Options</span>
+            </a>
+        </li>
     </ul>
     <div class="slide-right" id="slide-right"><i class="fe fe-chevron-right"></i></div>
 </div>

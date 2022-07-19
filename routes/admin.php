@@ -13,6 +13,7 @@ Route::prefix('admin')->middleware('auth', 'admin')->name('admin.')->group(funct
         Route::get('/tids/order/pending', 'pendingOrderTids')->name('pending.order.tids');
         Route::get('/tids/all', 'allTids')->name('all.tids');
         Route::get('/users', 'users')->name('users');
+        Route::get('/options', 'options')->name('options');
         Route::get('/methods', 'methods')->name('methods');
         Route::get('/orders', 'orders')->name('orders');
         Route::get('/withdraw', 'withdraw')->name('withdraw');

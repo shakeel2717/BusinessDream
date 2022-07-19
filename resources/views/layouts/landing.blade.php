@@ -52,8 +52,9 @@
                     </div>
                     <div class="main-header-center">
                         <div class="responsive-logo">
-                            <a href="{{ route('landing-page') }}"><img src="{{ asset('assets/img/brand/logo.png') }}"
-                                    class="mobile-logo" alt="logo"></a>
+                            <a href="{{ route('landing-page') }}"><img
+                                    src="{{ asset('assets/img/brand/logo.png') }}" class="mobile-logo"
+                                    alt="logo"></a>
                         </div>
                     </div>
                     <div class="main-header-right">
@@ -146,8 +147,9 @@
                                 <h4 class="fw-semibold mt-7">Le'ts Earn!</h4>
                                 <h1 class="text-start fw-bold">{{ env('APP_DESC') }}</h1>
                                 <h6 class="pb-3">
-                                    Best Online Marketing Solution for your online Business, Signup and Get Start Earning with us.
-                                   </h6>
+                                    Best Online Marketing Solution for your online Business, Signup and Get Start
+                                    Earning with us.
+                                </h6>
                                 <a href="{{ route('register') }}"
                                     class="btn ripple btn-min w-lg mb-3 me-2 btn-light"><i
                                         class="fe fe-play me-2"></i> Get Started
@@ -176,7 +178,9 @@
                                 <h4 class="text-center fw-semibold landing-card-header">Features</h4>
                                 <span class="landing-title"></span>
                                 <h2 class="fw-semibold text-center">{{ env('APP_NAME') }} Main Features</h2>
-                                <p class="text-default mb-5 text-center">NBD (New Business Dream) Ye Ek Pakistani Company Hai Aur Humara Plane Har Pakistani Berozgar Ko Rozgar Dena Yaha Ap Sirf 650 Rupe Se Register Ho Kar Apna Online Karobar Kar Sakte Hain.</p>
+                                <p class="text-default mb-5 text-center">NBD (New Business Dream) Ye Ek Pakistani
+                                    Company Hai Aur Humara Plane Har Pakistani Berozgar Ko Rozgar Dena Yaha Ap Sirf 650
+                                    Rupe Se Register Ho Kar Apna Online Karobar Kar Sakte Hain.</p>
                                 <div class="row mt-7">
                                     <div class="col-lg-3 col-md-12">
                                         <div class="card features main-features main-features-1 wow fadeInUp reveal revealleft"
@@ -699,7 +703,16 @@
                                             <div class="col-xl-8 col-lg-6 col-md-6 col-sm-12">
                                                 <div class="working-content content-1">
                                                     <h4 class="mb-3">Quick Support </h4>
-                                                    <p class="title-desc text-muted">Yaha Kam Karna Bht Asan Hai Apko Sirf 2 Members Ko Join Karwana Hai Aur Unko Ache Se Guideline Deni Hai Samjhana Hai K Wo Bhi Aage 2 Member Ko Join Karwaye Jese Apke 2 Members Ban Jayege Apka Kam Start Hojayega Ap Befiqar Ho Kar Kam Karte Jaye Aur Profit Hasil Karte Jaye 1st Pair Means <br> <br> Right/Left Pe Ek Ek Member Lagane Pe 1st Pair Pe Apko 250 Earning Milegi Uske Bad Apke Jitne Pairs Bante Jayege Har Pair Pe Apko 200 Earning Milti Jayegi Jitne Pair Utni Earning Ek Din Me Ap Yaha Se 200 Se Unlimited Earning Kar Sakte Hain Jis Me Rewards Bhi Shamil Hain....</p>
+                                                    <p class="title-desc text-muted">Yaha Kam Karna Bht Asan Hai Apko
+                                                        Sirf 2 Members Ko Join Karwana Hai Aur Unko Ache Se Guideline
+                                                        Deni Hai Samjhana Hai K Wo Bhi Aage 2 Member Ko Join Karwaye
+                                                        Jese Apke 2 Members Ban Jayege Apka Kam Start Hojayega Ap
+                                                        Befiqar Ho Kar Kam Karte Jaye Aur Profit Hasil Karte Jaye 1st
+                                                        Pair Means <br> <br> Right/Left Pe Ek Ek Member Lagane Pe 1st
+                                                        Pair Pe Apko 250 Earning Milegi Uske Bad Apke Jitne Pairs Bante
+                                                        Jayege Har Pair Pe Apko 200 Earning Milti Jayegi Jitne Pair Utni
+                                                        Earning Ek Din Me Ap Yaha Se 200 Se Unlimited Earning Kar Sakte
+                                                        Hain Jis Me Rewards Bhi Shamil Hain....</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -731,14 +744,33 @@
                                                                     class="badge bg-white text-primary float-end font-weight-normal">Limited
                                                                     Deal</span></p>
                                                             <p class="text-justify fw-semibold mb-1"> <span
-                                                                    class="fs-30 me-2">$</span><span
-                                                                    class="fs-30 me-1">1,299</span><span
+                                                                    class="fs-30 me-2">{{ env('APP_CURRENCY') }}</span><span
+                                                                    class="fs-30 me-1">{{ option('fees') }}</span><span
                                                                     class="fs-25"><span
                                                                         class="op-0-5 text-muted text-20">/</span>
                                                                     Lifetime</span></p>
-                                                            <p class="fs-13 mb-2">Best Online Marketing Solution for your online Business, Signup and Get Start Earning with us.</p>
-                                                            <p class="fs-13 mb-1 text-primary">Billed monthly on
-                                                                regular basis!</p>
+                                                            <p class="fs-13 mb-2"> Rewards Detail
+                                                                1Star 30/30-Earn1500 <br>
+
+                                                                2Star 100/100-Earn5000 <br>
+
+                                                                3Star 500/500-Earn15000 <br>
+
+                                                                4Star 2000/2000-Earn60000 <br>
+
+                                                                5Star 4500/4500-Earn130000 <br>
+
+                                                                6Star 6000/6000-Earn200000 <br>
+
+                                                                7Star 10000/10000-Earn300000 <br>
+
+                                                                8Star 25000/25000-Earn750000 <br>
+
+                                                                9Star 40000/40000-Earn1200000 <br>
+
+                                                                10Star 50000/50000-Earn1500000 <br>
+                                                                For More Information Contact With Admin <br>
+                                                                WhatsApp#03163677806</p> <br>
                                                         </div>
                                                         <div class="card-body py-2">
 
@@ -830,8 +862,8 @@
                                     </div>
                                     <div class="col-lg-4 col-sm-12 col-md-4 reveal revealleft">
                                         <div class="">
-                                            <a href="{{ route('landing-page') }}"><img loading="lazy" alt=""
-                                                    class="logo mb-3"
+                                            <a href="{{ route('landing-page') }}"><img loading="lazy"
+                                                    alt="" class="logo mb-3"
                                                     src="{{ asset('') }}assets/img/brand/logo-light.png"></a>
                                             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
                                                 dolore eu fugiat nulla pariatur Excepteur sint occaecat.</p>

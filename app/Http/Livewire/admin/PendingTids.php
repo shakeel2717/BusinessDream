@@ -168,16 +168,35 @@ final class PendingTids extends PowerGridComponent
             //        ->route('tid.destroy', ['tid' => 'id'])
             //        ->method('delete')
 
-            Button::add('destroy')
+            Button::add('approve')
                 ->caption("Approve")
                 ->class('btn btn-sm btn-success')
-                ->emit('approveTid', ['id' => 'id'])
+                ->emit('approveTid', ['id' => 'id']),
+
+            Button::add('destroy')
+                ->caption("Delete")
+                ->class('btn btn-sm btn-danger')
+                ->emit('DeleteTid', ['id' => 'id'])
         ];
     }
 
     protected function getListeners()
     {
-        return 'approveTid';
+        return array_merge(
+            parent::getListeners(),
+            [
+                'approveTid',
+                'DeleteTid',
+            ]
+        );
+    }
+
+    public function DeleteTid($id)
+    {
+        $tid = Tid::find($id['id']);
+        $user = User::find($tid->user_id);
+        $user->delete();
+        $tid->delete();
     }
 
     public function approveTid($id)

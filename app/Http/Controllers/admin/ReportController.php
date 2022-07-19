@@ -20,6 +20,12 @@ class ReportController extends Controller
     }
 
 
+    public function options()
+    {
+        return view('admin.reports.option');
+    }
+
+
     public function withdrawPending()
     {
         return view('admin.reports.withdrawPending');
