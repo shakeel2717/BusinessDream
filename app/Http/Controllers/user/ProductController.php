@@ -40,6 +40,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'quantity' => 'required|numeric',
+            'address' => 'required|string',
             'product_id' => 'required|integer|exists:products,id',
         ]);
 
@@ -52,6 +53,7 @@ class ProductController extends Controller
         $order = $product->orders()->create([
             'user_id' => auth()->user()->id,
             'quantity' => $validatedData['quantity'],
+            'address' => $validatedData['address'],
             'amount' => $product->price * $validatedData['quantity'],
         ]);
 

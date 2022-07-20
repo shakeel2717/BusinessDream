@@ -65,6 +65,13 @@
                         <hr>
                     @endforeach
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="address" id="address" cols="30" rows="10" class="form-control" placeholder="Your Complete Address and Detail"></textarea>
+                        </div>
+                    </div>
+                </div>
                 <div class="colors d-flex me-3 mt-2">
                     <div class="text-center mt-4 mb-4 btn-list">
                         <button type="submit" class="btn ripple btn-primary"><i class="fe fe-shopping-cart">
@@ -80,7 +87,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="amount">Amount</label>
-                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount">
+                                <input type="text" name="amount" id="amount" class="form-control"
+                                    placeholder="Amount">
                                 <small class="mt-2">Enter Amount, This Amount will be Added into your account once it's
                                     Verified!</small>
                             </div>

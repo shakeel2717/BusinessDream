@@ -15,5 +15,6 @@ class Order extends Model
         'quantity',
         'status',
         'amount',
+        'address',
     ];
 }

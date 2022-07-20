@@ -13,6 +13,15 @@
     </ul>
     <div class="slide-left disabled" id="slide-left"><i class="fe fe-chevron-left"></i></div>
     <ul class="menu-nav nav">
+        <li class="nav-header"><span class="nav-label">Finance</span></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.balance.index') }}">
+                <span class="shape1"></span>
+                <span class="shape2"></span>
+                <i class="ti-layout sidemenu-icon menu-icon "></i>
+                <span class="sidemenu-label">Add Balance</span>
+            </a>
+        </li>
         <li class="nav-header"><span class="nav-label">All Reports</span></li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.report.users') }}">

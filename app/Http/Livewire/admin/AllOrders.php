@@ -91,6 +91,7 @@ final class AllOrders extends PowerGridComponent
             ->addColumn('user_id')
             ->addColumn('product_id')
             ->addColumn('quantity')
+            ->addColumn('address')
             ->addColumn('status')
             ->addColumn('amount')
             ->addColumn('created_at_formatted', fn (Order $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
@@ -125,6 +126,9 @@ final class AllOrders extends PowerGridComponent
 
             Column::make('STATUS', 'status')
                 ->toggleable(),
+
+            Column::make('ADDRESS', 'address')
+                ->searchable(),
 
             Column::make('AMOUNT', 'amount')
                 ->sortable()
