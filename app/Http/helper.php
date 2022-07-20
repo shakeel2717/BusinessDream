@@ -115,3 +115,84 @@ function balance($user_id)
     $out = Transaction::where('user_id', $user_id)->where('sum', false)->sum('amount');
     return $in - $out;
 }
+
+function getAllRefersBinary($user_id)
+{
+    $refers = [];
+    $user = User::find($user_id);
+    $downlines = User::where('refer', $user->username)->get();
+    foreach ($downlines as $downline) {
+        $refers[] = $downline->id;
+        $downlinesSecondLevel = User::where('refer', $downline->username)->get();
+        foreach ($downlinesSecondLevel as $downlineSecondLevel) {
+            $refers[] = $downlineSecondLevel->id;
+            $downlinesThirdLevel = User::where('refer', $downlineSecondLevel->username)->get();
+            foreach ($downlinesThirdLevel as $downlineThirdLevel) {
+                $refers[] = $downlineThirdLevel->id;
+
+                $downlinesFourthLevel = User::where('refer', $downlineThirdLevel->username)->get();
+                foreach ($downlinesFourthLevel as $downlineFourthLevel) {
+                    $refers[] = $downlineFourthLevel->id;
+
+                    $downlinesFifthLevel = User::where('refer', $downlineFourthLevel->username)->get();
+                    foreach ($downlinesFifthLevel as $downlineFifthLevel) {
+                        $refers[] = $downlineFifthLevel->id;
+
+                        $downlinesSixthLevel = User::where('refer', $downlineFifthLevel->username)->get();
+                        foreach ($downlinesSixthLevel as $downlineSixthLevel) {
+                            $refers[] = $downlineSixthLevel->id;
+
+                            $downlinesSeventhLevel = User::where('refer', $downlineSixthLevel->username)->get();
+
+                            foreach ($downlinesSeventhLevel as $downlineSeventhLevel) {
+                                $refers[] = $downlineSeventhLevel->id;
+
+                                $downlinesEighthLevel = User::where('refer', $downlineSeventhLevel->username)->get();
+
+                                foreach ($downlinesEighthLevel as $downlineEighthLevel) {
+                                    $refers[] = $downlineEighthLevel->id;
+
+                                    $downlinesNinthLevel = User::where('refer', $downlineEighthLevel->username)->get();
+                                    foreach ($downlinesNinthLevel as $downlineNinthLevel) {
+                                        $refers[] = $downlineNinthLevel->id;
+
+                                        $downlinesTenthLevel = User::where('refer', $downlineNinthLevel->username)->get();
+                                        foreach ($downlinesTenthLevel as $downlineTenthLevel) {
+                                            $refers[] = $downlineTenthLevel->id;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return $refers;
+}
+
+
+function allRefers($user_id)
+{
+    $count = [];
+    $allRefers = User::whereIn('id', getAllRefersBinary($user_id))->get();
+    foreach ($allRefers as $refer) {
+        getLeftRight($refer->id);
+    }
+}
+
+function getLeftRight($user)
+{
+    $allRefersCount = [];
+    if ($user->left != 'free') {
+        $leftRecord = User::where('username', $user->left)->first();
+        $allRefersCount[] = $leftRecord->id;
+    }
+
+    if ($user->right != 'free') {
+        $rightRecord = User::where('username', $user->right)->first();
+        $allRefersCount[] = $rightRecord->id;
+    }
+    return $allRefersCount;
+}

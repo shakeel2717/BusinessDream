@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,7 +16,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard.index');
+        $refers = User::whereIn('id', getAllRefersBinary(auth()->user()->id))->get();
+        return view('user.dashboard.index', compact('refers'));
     }
 
     /**

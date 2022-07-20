@@ -7,10 +7,13 @@
                 icon="wallet" heading="TOTAL REVENUE" />
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-            <x-card-state value="{{ totalRefers(auth()->user()->id)->count() }}" icon="users" heading="TOTAL Referrals" />
+            <x-card-state value="{{ $refers->count() > 20 ? '20+' : $refers->count() }}" icon="users"
+                heading="TOTAL Referrals" />
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-            <x-card-state value="{{ number_format(auth()->user()->transactions->where('type','withdraw')->where('sum',false)->sum('amount'),2) }}" icon="wallet" heading="TOTAL PAYOUT" />
+            <x-card-state
+                value="{{ number_format(auth()->user()->transactions->where('type', 'withdraw')->where('sum', false)->sum('amount'),2) }}"
+                icon="wallet" heading="TOTAL PAYOUT" />
         </div>
     </div>
     <div class="row">
@@ -23,32 +26,37 @@
                         @forelse (auth()->user()->transactions->take(5) as $transaction)
                             <tr>
                                 <td class="wd-5p">
-                                    <i class="fas fa-wallet fs-30 ms-2 text-{{ ($transaction->sum == true) ? "success" : "danger" }}">
+                                    <i
+                                        class="fas fa-wallet fs-30 ms-2 text-{{ $transaction->sum == true ? 'success' : 'danger' }}">
                                 </td>
                                 <td>
                                     <div class="d-flex align-middle ms-3">
                                         <div class="d-inline-block">
                                             <h6 class="mb-1 text-uppercase">{{ $transaction->type }}</h6>
-                                            <p class="mb-0 tx-13 text-muted">{{ $transaction->status ? "Approved" : "Pending" }}</p>
+                                            <p class="mb-0 tx-13 text-muted">
+                                                {{ $transaction->status ? 'Approved' : 'Pending' }}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="text-end">
                                     <div class="d-inline-block">
-                                        <h6 class="mb-2 tx-15 font-weight-semibold">{{ env('APP_CURRENCY') }} {{ number_format($transaction->amount,2) }}<i
-                                                class="fas fa-level-up-alt ms-2 text-{{ ($transaction->sum == true) ? "success" : "danger" }} m-l-10"></i>
+                                        <h6 class="mb-2 tx-15 font-weight-semibold">{{ env('APP_CURRENCY') }}
+                                            {{ number_format($transaction->amount, 2) }}<i
+                                                class="fas fa-level-up-alt ms-2 text-{{ $transaction->sum == true ? 'success' : 'danger' }} m-l-10"></i>
                                         </h6>
-                                        <p class="mb-0 tx-11 text-muted">{{ $transaction->created_at->diffForHumans() }}</p>
+                                        <p class="mb-0 tx-11 text-muted">{{ $transaction->created_at->diffForHumans() }}
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
                         @empty
-                        <tr>
-                            <td colspan="3" class="text-center">
-                                <img src="{{ asset('assets/icon/productivity.png') }}" class="my-3" alt="{{ env('APP_DESC') }}">
-                                <h6 class="mb-0 tx-13 text-muted">No Recent Transactions</h6>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <img src="{{ asset('assets/icon/productivity.png') }}" class="my-3"
+                                        alt="{{ env('APP_DESC') }}">
+                                    <h6 class="mb-0 tx-13 text-muted">No Recent Transactions</h6>
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -83,7 +91,8 @@
                     <label class="main-content-label mb-0">My Refer link</label>
                     <div class="row mt-3 crypto-wallet">
                         <div class=" col-12 col-md-4 text-center">
-                            <img src="{{ asset('assets/icon/refer.png') }}" alt="{{ env('APP_DESC') }}" class="my-3">
+                            <img src="{{ asset('assets/icon/refer.png') }}" alt="{{ env('APP_DESC') }}"
+                                class="my-3">
                         </div>
                         <div class="col-12 col-md-8">
                             <p>Copy Your Refer Link .</p>
@@ -91,7 +100,7 @@
 
                             <div class="input-group">
                                 <input type="text" class="form-control input-lg" id="refer_link"
-                                    value="{{ route('register',['refer' => auth()->user()->username]) }}">
+                                    value="{{ route('register', ['refer' => auth()->user()->username]) }}">
                                 <div class="input-group-prepend">
                                     <button id="copyClipboard" class="clipboard-icon">COPY</button>
                                 </div>
@@ -138,7 +147,8 @@
                                                     <p class="text-uppercase tx-13 text-muted mb-1">Total Members</p>
                                                     <h5 class="">
                                                         {{ totalRefers(auth()->user()->id)->count() }}
-                                                        <span class="tx-14 text-muted font-weight-normal ms-1">BTC</span></h5>
+                                                        <span class="tx-14 text-muted font-weight-normal ms-1">BTC</span>
+                                                    </h5>
                                                 </div>
                                             </div>
                                         </div>
