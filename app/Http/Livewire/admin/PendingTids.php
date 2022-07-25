@@ -289,8 +289,7 @@ final class PendingTids extends PowerGridComponent
                     }
                 }
             }
-
-            deliveredCommission($thisSponser, $user->id);
+            deliveredCommission($user->id);
         }
         // Refer System End MLM
 

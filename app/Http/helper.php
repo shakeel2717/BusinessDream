@@ -34,43 +34,61 @@ function balance($user_id)
     return $in - $out;
 }
 
-function deliveredCommission($sponser, $user)
+function deliveredCommission($user_id)
 {
-    $sponser = User::find($sponser);
-    $user = User::find($user);
-    // checking if sponser left and right are not free.
-    if ($sponser->left != 'free' && $sponser->right != 'free') {
-        $transaction = new Transaction();
-        $transaction->user_id = $sponser->id;
-        $transaction->amount = option("referCommision");
-        $transaction->status = true;
-        $transaction->sum = true;
-        $transaction->type = 'reward';
-        $transaction->reference = 'Reward Recieved form ' . $user->username;
-        $transaction->save();
-
-        // checking in downline
-        if ($sponser->refer != 'default') {
-            $uplineSponser = User::where('username', $sponser->refer)->first();
-            if ($uplineSponser->left == $sponser->username && $uplineSponser->right_count >= $uplineSponser->left_count) {
+    info("Count Start");
+    $user = User::find($user_id);
+    $downlineRefers = User::whereIn('id', countRefers($user_id))->get();
+    $count = 1;
+    
+    foreach ($downlineRefers as $refer) {
+        info("Loop for User: " . $refer->username);
+        // $sponser = User::where('username', $refer->refer)->first();
+        // info("User Inquirey for: " . $sponser);
+        if ($refer != "") {
+            if ($count == 1) {
+                $profit = option("referCommisionLevel2");
+            } else {
+                $profit = option("referCommision");
+            }
+            if ($refer->left != "free" && $refer->right != "free" && $refer->right_count >= $refer->left_count) {
+                info("refership Verifed!");
                 $transaction = new Transaction();
-                $transaction->user_id = $uplineSponser->id;
-                $transaction->amount = option("referCommisionLevel2");
+                $transaction->user_id = $refer->id;
+                $transaction->amount = $profit;
                 $transaction->status = true;
                 $transaction->sum = true;
                 $transaction->type = 'reward';
-                $transaction->reference = 'Reward Recieved form ' . $user->username;
+                $transaction->reference = 'Reward Recieved form XXXX';
                 $transaction->save();
-            } elseif ($uplineSponser->right == $sponser->username && $uplineSponser->left_count >= $uplineSponser->right_count) {
-                $transaction = new Transaction();
-                $transaction->user_id = $uplineSponser->id;
-                $transaction->amount = option("referCommisionLevel2");
-                $transaction->status = true;
-                $transaction->sum = true;
-                $transaction->type = 'reward';
-                $transaction->reference = 'Reward Recieved form ' . $user->username;
-                $transaction->save();
+                info("Profit Delivred to: " . $refer->username);
             }
         }
+        $count++;
     }
+}
+
+
+function countRefers($user_id)
+{
+    $count = [];
+    $user = User::find($user_id);
+
+    // finding my upliner
+    checkUpliner:
+    info("Goto Start");
+    $sponser = User::where('left', $user->username)->first();
+    if ($sponser == "") {
+        $sponser = User::where('right', $user->username)->first();
+    }
+    if ($sponser != "") {
+        if ($sponser->left_count >= $sponser->right_count) {
+            $count[] = $sponser->id;
+            $user = User::find($sponser->id);
+            info("Goto End");
+            goto checkUpliner;
+        }
+    }
+
+    return $count;
 }
