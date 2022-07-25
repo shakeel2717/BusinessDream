@@ -13,6 +13,7 @@ class Tid extends Model
         'user_id',
         'tid',
         'status',
+        'sponser_username',
     ];
 
 

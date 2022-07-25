@@ -208,72 +208,27 @@ final class PendingTids extends PowerGridComponent
         $user = User::find($tid->user_id);
         $user->status = true;
         $user->save();
-
-        // checking if this user has valid refer
-        if ($user->refer != "default") {
-            Log::info("User has valid refer");
-            $upliner = User::where('username', $user->refer)->first();
-            // checking if this both side are refered, not free
-            // getting Right side refer
-            $rightSideRefer = User::where('username', $upliner->right)->first();
-            $leftSideRefer = User::where('username', $upliner->left)->first();
-            if ($upliner->right != "free" && $rightSideRefer->status == true && $upliner->left != "free" && $leftSideRefer->status == true) {
-                $transaction = new Transaction();
-                $transaction->user_id = $upliner->id;
-                $transaction->amount = option("referCommision");
-                $transaction->status = true;
-                $transaction->sum = true;
-                $transaction->type = 'reward';
-                $transaction->reference = 'Reward Recieved form ' . $user->username;
-                $transaction->save();
-
-                Log::info("2nd Level");
-                $uplinerTwo = User::where('username', $upliner->refer)->first();
-                if ($uplinerTwo != "") {
-                    Log::info("Upliner Two: " . $uplinerTwo->username);
-                    if ($uplinerTwo->left == $upliner->left) {
-                        $otherSideRefer = User::where('username', $uplinerTwo->left)->first();
-                    } else {
-                        $otherSideRefer = User::where('username', $uplinerTwo->right)->first();
-                    }
-                    Log::info("otherSideRefer: " . $otherSideRefer);
-                    if ($otherSideRefer != "") {
-                        if ($otherSideRefer->left != "free" && $otherSideRefer->right != "free") {
-                            // getting otherside 2 level left and right refers
-                            $otherSideReferLeft = User::where('username', $otherSideRefer->left)->first();
-                            Log::info("otherSideReferLeft: " . $otherSideReferLeft);
-                            $otherSideReferRight = User::where('username', $otherSideRefer->right)->first();
-                            Log::info("otherSideReferRight: " . $otherSideReferRight);
-                            // checking if this both side are refered, not free
-                            if ($otherSideReferLeft->status == true && $otherSideReferRight->status == true) {
-                                Log::info("2nd Level valid refer");
-                                // checking if this both side are refered, not free
-                                $transaction = new Transaction();
-                                $transaction->user_id = $uplinerTwo->id;
-                                $transaction->amount = option("referCommisionLevel2");
-                                $transaction->status = true;
-                                $transaction->sum = true;
-                                $transaction->type = 'reward';
-                                $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
-                                $transaction->save();
-                                Log::info("2nd Level Succes");
-                            }
-                        }
-                    } else {
-                        Log::info("Empty Data");
-                    }
-                } else {
-                    Log::info("2nd level Invlaid");
-                }
+        
+        // refer system
+        if($tid->sponser_username != 'default'){
+            Log::info('Sponser username: '.$tid->sponser_username);
+            $sponser = User::where('username', $tid->sponser_username)->first();
+            if ($sponser->left == 'free') {
+                Log::info('Left Side is Free');
+                $sponser->left = $tid->sponser_username;
+                $sponser->left_count += 1;
+                $sponser->save();
+            } elseif ($sponser->right == 'free') {
+                Log::info('Right Side is Free');
+                $sponser->right = $tid->sponser_username;
+                $sponser->right_count += 1;
+                $sponser->save();
             } else {
-                Log::info("1st LEvel not Valid");
+                Log::info('NO Side are Free');
             }
-        } else {
-            Log::info("User not have Any Refer. Default");
         }
-
+        
         // inserting deposit transaction
-
         $transaction = $user->transactions()->create([
             'amount' => option("fees"),
             'type' => 'deposit',

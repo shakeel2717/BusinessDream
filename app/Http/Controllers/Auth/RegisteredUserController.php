@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -48,48 +49,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-
         // Refer System
-        // checking if refer is not null
-        if ($request->refer != null) {
-            $referDetail = User::where('username', $request->refer)->firstOrFail();
-            // getting free space
-            if ($referDetail->left == 'free') {
-                $referDetail->left = $request->username;
-                $referDetail->save();
-            } elseif ($referDetail->right == 'free') {
-                $referDetail->right = $request->username;
-                $referDetail->save();
-            } else {
-                // getting in downline user
-                $downline = User::where('username', $referDetail->left)->first();
-                findPosition:
-                if ($downline->left == 'free') {
-                    $downline->left = $request->username;
-                    $request->refer = $downline->username;
-                    $downline->save();
-                } elseif ($downline->right == 'free') {
-                    $downline->right = $request->username;
-                    $request->refer = $downline->username;
-                    $downline->save();
-                } else {
-                    // getting in downline user
-                    $downlineRight = User::where('username', $referDetail->right)->first();
-                    if ($downlineRight->left == 'free') {
-                        $downlineRight->left = $request->username;
-                        $request->refer = $downlineRight->username;
-                        $downlineRight->save();
-                    } elseif ($downlineRight->right == 'free') {
-                        $downlineRight->right = $request->username;
-                        $request->refer = $downlineRight->username;
-                        $downlineRight->save();
-                    } else {
-                        $downline = User::where('username', $downline->left)->firstOrFail();
-                        goto findPosition;
-                    }
-                }
-            }
-        } else {
+        if ($request->refer == null) {
             $request->refer = 'default';
         }
 

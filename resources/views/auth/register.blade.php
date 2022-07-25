@@ -25,7 +25,7 @@
                         <a class="btn ripple btn-primary mb-3" data-bs-target="#scrollingmodal" data-bs-toggle="modal"
                             href="">Payment Methods</a>
                         <br>
-                        <x-input name="tid" type="text" label="Payment Transaction ID" />
+                        <x-input name="tid" label="Payment Transaction ID" />
 
                         <button class="btn ripple btn-main-primary btn-block">Create Account</button>
                     </form>

@@ -18,7 +18,7 @@
                             <div class="alert bg-success text-white p-3">Account Created Successfully, Pleae login!
                             </div>
                         @endisset
-                        <x-input name="username" label="Enter Username" />
+                        <x-input type="text" name="username" label="Enter Username" />
                         <x-input name="password" type="password" label="Enter Password" />
                         <button class="btn ripple btn-main-primary btn-block">Sign In</button>
                     </form>
