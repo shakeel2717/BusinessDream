@@ -7,7 +7,7 @@
         <div class="main-container container-fluid">
             <div class="row row-sm">
                 <div class="card-body mt-2 mb-2">
-                    <img src="assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-start float-start mb-4"
+                    <img src="/assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-start float-start mb-4"
                         alt="logo">
                     <div class="clearfix"></div>
                     <form action="{{ route('register') }}" method="POST">
@@ -21,6 +21,7 @@
                         <x-input name="password" type="password" label="Password" />
                         <x-input name="password_confirmation" type="password" label="Confirm Password" />
                         <input type="hidden" name="refer" id="refer" value="{{ $refer }}">
+                        <input type="hidden" name="position" id="position" value="{{ $position }}">
                         <br>
                         <a class="btn ripple btn-primary mb-3" data-bs-target="#scrollingmodal" data-bs-toggle="modal"
                             href="">Payment Methods</a>
@@ -54,7 +55,8 @@
                                 <div>
                                     <h6 class="main-content-label mb-1">Payment Methods</h6>
                                     <p class="text-muted card-sub-title">Send <b> {{ env('APP_CURRENCY') }}
-                                        {{ number_format(option('fees'), 2) }} </b> Payment to this Address. and Copy the TID
+                                            {{ number_format(option('fees'), 2) }} </b> Payment to this Address. and Copy
+                                        the TID
                                         or Referrence Id.</p>
                                 </div>
                                 <div aria-multiselectable="true" class="accordion accordion-color mt-3" id="accordion2"

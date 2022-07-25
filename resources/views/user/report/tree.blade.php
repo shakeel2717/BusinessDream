@@ -27,7 +27,7 @@
                                                 <div class="col-12 col-md-6 col-lg-4">
                                                     <div class="form-group">
                                                         <input type="text" id="link" class="form-control"
-                                                            value="{{ generateReferLinks($user->id) }}">
+                                                            value="{{ route('register',['position' => 'left' , 'refer' => $user->username]) }}">
                                                         <a class="btn btn-primary btn-sm mt-2 text-white"
                                                             id="copyClipboard">Copy</a>
                                                     </div>

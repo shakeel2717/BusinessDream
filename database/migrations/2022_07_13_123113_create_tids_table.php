@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('tid')->unique();
             $table->string('sponser_username')->default('default');
+            $table->string('position')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

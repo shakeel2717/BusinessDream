@@ -14,6 +14,7 @@ class Tid extends Model
         'tid',
         'status',
         'sponser_username',
+        'position',
     ];
 
 

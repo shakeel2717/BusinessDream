@@ -3,12 +3,11 @@
 @section('content')
     <div class="row row-sm">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-            <x-card-state value="{{ env('APP_CURRENCY') }}{{ number_format(balance(auth()->user()->id), 2) }}"
-                icon="wallet" heading="TOTAL REVENUE" />
+            <x-card-state value="{{ env('APP_CURRENCY') }}{{ number_format(balance(auth()->user()->id), 2) }}" icon="wallet"
+                heading="TOTAL REVENUE" />
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-            <x-card-state value="{{ $refers->count() > 20 ? '20+' : $refers->count() }}" icon="users"
-                heading="TOTAL Referrals" />
+            <x-card-state value="{{ auth()->user()->right_count + auth()->user()->left_count }}" icon="users" heading="TOTAL Referrals" />
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
             <x-card-state
@@ -91,18 +90,29 @@
                     <label class="main-content-label mb-0">My Refer link</label>
                     <div class="row mt-3 crypto-wallet">
                         <div class=" col-12 col-md-4 text-center">
-                            <img src="{{ asset('assets/icon/refer.png') }}" alt="{{ env('APP_DESC') }}"
-                                class="my-3">
+                            <img src="{{ asset('assets/icon/refer.png') }}" alt="{{ env('APP_DESC') }}" class="my-3">
                         </div>
                         <div class="col-12 col-md-8">
                             <p>Copy Your Refer Link .</p>
                             <hr>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control input-lg" id="refer_link"
-                                    value="{{ route('register', ['refer' => auth()->user()->username]) }}">
-                                <div class="input-group-prepend">
-                                    <button id="copyClipboard" class="clipboard-icon">COPY</button>
+                            <div class="form-group">
+                                <label for="left">For Left Join</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-lg" id="refer_link_left"
+                                        value="{{ route('register', ['position' => 'left', 'refer' => auth()->user()->username]) }}">
+                                    <div class="input-group-prepend">
+                                        <button id="copyClipboardLeft" class="clipboard-icon">COPY</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="right">For Right Join</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-lg" id="refer_link_right"
+                                        value="{{ route('register', ['position' => 'right', 'refer' => auth()->user()->username]) }}">
+                                    <div class="input-group-prepend">
+                                        <button id="copyClipboardRight" class="clipboard-icon">COPY</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row row-sm px-4 mt-3">
@@ -146,8 +156,42 @@
                                                 <div class="">
                                                     <p class="text-uppercase tx-13 text-muted mb-1">Total Members</p>
                                                     <h5 class="">
-                                                        {{ totalRefers(auth()->user()->id)->count() }}
-                                                        <span class="tx-14 text-muted font-weight-normal ms-1">BTC</span>
+                                                    {{ auth()->user()->right_count + auth()->user()->left_count }}
+                                                        <span class="tx-14 text-muted font-weight-normal ms-1">Members</span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-xl-4">
+                                    <div class="card border custom-card">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <span class="crypto-icon bg-primary-transparent me-3 my-auto"><i
+                                                        class="fas fa-wallet text-primary"></i></span>
+                                                <div class="">
+                                                    <p class="text-uppercase tx-13 text-muted mb-1">Left Members</p>
+                                                    <h5 class="">
+                                                    {{ auth()->user()->left_count }}
+                                                        <span class="tx-14 text-muted font-weight-normal ms-1">Members</span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-xl-4">
+                                    <div class="card border custom-card">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <span class="crypto-icon bg-primary-transparent me-3 my-auto"><i
+                                                        class="fas fa-wallet text-primary"></i></span>
+                                                <div class="">
+                                                    <p class="text-uppercase tx-13 text-muted mb-1">Right Members</p>
+                                                    <h5 class="">
+                                                    {{ auth()->user()->right_count }}
+                                                        <span class="tx-14 text-muted font-weight-normal ms-1">Members</span>
                                                     </h5>
                                                 </div>
                                             </div>
@@ -166,8 +210,14 @@
 @section('footer')
     <script>
         // copyClipboard click and copy refer_link
-        $('#copyClipboard').click(function() {
-            var copyText = document.getElementById("refer_link");
+        $('#copyClipboardLeft').click(function() {
+            var copyText = document.getElementById("refer_link_left");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        });
+        $('#copyClipboardRight').click(function() {
+            var copyText = document.getElementById("refer_link_right");
             copyText.select();
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");

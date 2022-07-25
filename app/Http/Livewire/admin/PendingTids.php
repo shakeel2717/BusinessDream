@@ -208,26 +208,406 @@ final class PendingTids extends PowerGridComponent
         $user = User::find($tid->user_id);
         $user->status = true;
         $user->save();
-        
-        // refer system
-        if($tid->sponser_username != 'default'){
-            Log::info('Sponser username: '.$tid->sponser_username);
+
+
+
+
+
+
+
+
+
+
+
+
+        // Refer System Start MLM
+        if ($tid->sponser_username != 'default') {
             $sponser = User::where('username', $tid->sponser_username)->first();
-            if ($sponser->left == 'free') {
-                Log::info('Left Side is Free');
-                $sponser->left = $tid->sponser_username;
-                $sponser->left_count += 1;
-                $sponser->save();
-            } elseif ($sponser->right == 'free') {
-                Log::info('Right Side is Free');
-                $sponser->right = $tid->sponser_username;
-                $sponser->right_count += 1;
-                $sponser->save();
-            } else {
-                Log::info('NO Side are Free');
+            $position = $tid->position;
+            $downlineUsers = [];
+            if ($position != '' && $position == 'left') {
+                if ($sponser->left == 'free') {
+                    // check the left position
+                    $sponser->left = $user->username;
+                    $sponser->left_count += 1;
+                    $sponser->save();
+                    $thisSponser = $sponser->id;
+                } else {
+                    $downlineUsers[] = $sponser->id;
+                    // finding next downline users
+                    $downline = User::where('username', $sponser->left)->first();
+                    if ($downline->left == 'free') {
+                        // check the left position
+                        $downline->left = $user->username;
+                        $downline->left_count += 1;
+                        $downline->save();
+                        $thisSponser = $downline->id;
+                    } else {
+                        $downlineUsers[] = $downline->id;
+                        // finding next downline users
+                        $downline = User::where('username', $downline->left)->first();
+                        if ($downline->left == 'free') {
+                            // check the left position
+                            $downline->left = $user->username;
+                            $downline->left_count += 1;
+                            $downline->save();
+                            $thisSponser = $downline->id;
+                        } else {
+                            $downlineUsers[] = $downline->id;
+                            // finding next downline users
+                            $downline = User::where('username', $downline->left)->first();
+                            if ($downline->left == 'free') {
+                                // check the left position
+                                $downline->left = $user->username;
+                                $downline->left_count += 1;
+                                $downline->save();
+                                $thisSponser = $downline->id;
+                            } else {
+                                $downlineUsers[] = $downline->id;
+                                // finding next downline users
+                                $downline = User::where('username', $downline->left)->first();
+                                if ($downline->left == 'free') {
+                                    // check the left position
+                                    $downline->left = $user->username;
+                                    $downline->left_count += 1;
+                                    $downline->save();
+                                    $thisSponser = $downline->id;
+                                } else {
+                                    $downlineUsers[] = $downline->id;
+                                    // finding next downline users
+                                    $downline = User::where('username', $downline->left)->first();
+                                    if ($downline->left == 'free') {
+                                        // check the left position
+                                        $downline->left = $user->username;
+                                        $downline->left_count += 1;
+                                        $downline->save();
+                                        $thisSponser = $downline->id;
+                                    } else {
+                                        $downlineUsers[] = $downline->id;
+                                        // finding next downline users
+                                        $downline = User::where('username', $downline->left)->first();
+                                        if ($downline->left == 'free') {
+                                            // check the left position
+                                            $downline->left = $user->username;
+                                            $downline->left_count += 1;
+                                            $downline->save();
+                                            $thisSponser = $downline->id;
+                                        } else {
+                                            $downlineUsers[] = $downline->id;
+                                            // finding next downline users
+                                            $downline = User::where('username', $downline->left)->first();
+                                            if ($downline->left == 'free') {
+                                                // check the left position
+                                                $downline->left = $user->username;
+                                                $downline->left_count += 1;
+                                                $downline->save();
+                                                $thisSponser = $downline->id;
+                                            } else {
+                                                $downlineUsers[] = $downline->id;
+                                                // finding next downline users.
+                                                $downline = User::where('username', $downline->left)->first();
+                                                if ($downline->left == 'free') {
+                                                    // check the left position
+                                                    $downline->left = $user->username;
+                                                    $downline->left_count += 1;
+                                                    $downline->save();
+                                                    $thisSponser = $downline->id;
+                                                } else {
+                                                    $downlineUsers[] = $downline->id;
+                                                    // finding next downline users
+                                                    $downline = User::where('username', $downline->left)->first();
+                                                    if ($downline->left == 'free') {
+                                                        // check the left position
+                                                        $downline->left = $user->username;
+                                                        $downline->left_count += 1;
+                                                        $downline->save();
+                                                        $thisSponser = $downline->id;
+                                                    } else {
+                                                        $downlineUsers[] = $downline->id;
+                                                        // finding next downline users
+                                                        $downline = User::where('username', $downline->left)->first();
+                                                        if ($downline->left == 'free') {
+                                                            // check the left position
+                                                            $downline->left = $user->username;
+                                                            $downline->left_count += 1;
+                                                            $downline->save();
+                                                            $thisSponser = $downline->id;
+                                                        } else {
+                                                            $downlineUsers[] = $downline->id;
+                                                            // finding next downline users
+                                                            $downline = User::where('username', $downline->left)->first();
+                                                            if ($downline->left == 'free') {
+                                                                // check the left position
+                                                                $downline->left = $user->username;
+                                                                $downline->left_count += 1;
+                                                                $downline->save();
+                                                                $thisSponser = $downline->id;
+                                                            } else {
+                                                                $downlineUsers[] = $downline->id;
+                                                                // finding next downline users
+                                                                $downline = User::where('username', $downline->left)->first();
+                                                                if ($downline->left == 'free') {
+                                                                    // check the left position
+                                                                    $downline->left = $user->username;
+                                                                    $downline->left_count += 1;
+                                                                    $downline->save();
+                                                                    $thisSponser = $downline->id;
+                                                                } else {
+                                                                    $downlineUsers[] = $downline->id;
+                                                                    // finding next downline users
+                                                                    $downline = User::where('username', $downline->left)->first();
+                                                                    if ($downline->left == 'free') {
+                                                                        // check the left position
+                                                                        $downline->left = $user->username;
+                                                                        $downline->left_count += 1;
+                                                                        $downline->save();
+                                                                        $thisSponser = $downline->id;
+                                                                    } else {
+                                                                        $downlineUsers[] = $downline->id;
+                                                                        // finding next downline users
+                                                                        $downline = User::where('username', $downline->left)->first();
+                                                                        if ($downline->left == 'free') {
+                                                                            // check the left position
+                                                                            $downline->left = $user->username;
+                                                                            $downline->left_count += 1;
+                                                                            $downline->save();
+                                                                            $thisSponser = $downline->id;
+                                                                        } else {
+                                                                            $downlineUsers[] = $downline->id;
+                                                                            // finding next downline users
+                                                                            $downline = User::where('username', $downline->left)->first();
+                                                                            if ($downline->left == 'free') {
+                                                                                // check the left position
+                                                                                $downline->left = $user->username;
+                                                                                $downline->left_count += 1;
+                                                                                $downline->save();
+                                                                                $thisSponser = $downline->id;
+                                                                            } else {
+                                                                                $downlineUsers[] = $downline->id;
+                                                                                // finding next downline users
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    $incrasingLeftCountRefers = User::whereIn('id', $downlineUsers)->get();
+                    foreach ($incrasingLeftCountRefers as $leftCountRefer) {
+                        $leftCountRefer->left_count += 1;
+                        $leftCountRefer->save();
+                    }
+                }
+            } elseif ($position != '' && $position == 'right') {
+                // check the right position
+                if ($sponser->right == 'free') {
+                    // check the right position
+                    $sponser->right = $user->username;
+                    $sponser->right_count += 1;
+                    $sponser->save();
+                    $thisSponser = $sponser->id;
+                } else {
+                    $downlineUsers[] = $sponser->id;
+                    // finding next downline users
+                    $downline = User::where('username', $sponser->right)->first();
+                    if ($downline->right == 'free') {
+                        // check the right position
+                        $downline->right = $user->username;
+                        $downline->right_count += 1;
+                        $downline->save();
+                        $thisSponser = $downline->id;
+                    } else {
+                        $downlineUsers[] = $downline->id;
+                        // finding next downline users
+                        $downline = User::where('username', $downline->right)->first();
+                        if ($downline->right == 'free') {
+                            // check the right position
+                            $downline->right = $user->username;
+                            $downline->right_count += 1;
+                            $downline->save();
+                            $thisSponser = $downline->id;
+                        } else {
+                            $downlineUsers[] = $downline->id;
+                            // finding next downline users
+                            $downline = User::where('username', $downline->right)->first();
+                            if ($downline->right == 'free') {
+                                // check the right position
+                                $downline->right = $user->username;
+                                $downline->right_count += 1;
+                                $downline->save();
+                                $thisSponser = $downline->id;
+                            } else {
+                                $downlineUsers[] = $downline->id;
+                                // finding next downline users
+                                $downline = User::where('username', $downline->right)->first();
+                                if ($downline->right == 'free') {
+                                    // check the right position
+                                    $downline->right = $user->username;
+                                    $downline->right_count += 1;
+                                    $downline->save();
+                                    $thisSponser = $downline->id;
+                                } else {
+                                    $downlineUsers[] = $downline->id;
+                                    // finding next downline users
+                                    $downline = User::where('username', $downline->right)->first();
+                                    if ($downline->right == 'free') {
+                                        // check the right position
+                                        $downline->right = $user->username;
+                                        $downline->right_count += 1;
+                                        $downline->save();
+                                        $thisSponser = $downline->id;
+                                    } else {
+                                        $downlineUsers[] = $downline->id;
+                                        // finding next downline users
+                                        $downline = User::where('username', $downline->right)->first();
+                                        if ($downline->right == 'free') {
+                                            // check the right position
+                                            $downline->right = $user->username;
+                                            $downline->right_count += 1;
+                                            $downline->save();
+                                            $thisSponser = $downline->id;
+                                        } else {
+                                            $downlineUsers[] = $downline->id;
+                                            // finding next downline users
+                                            $downline = User::where('username', $downline->right)->first();
+                                            if ($downline->right == 'free') {
+                                                // check the right position
+                                                $downline->right = $user->username;
+                                                $downline->right_count += 1;
+                                                $downline->save();
+                                                $thisSponser = $downline->id;
+                                            } else {
+                                                $downlineUsers[] = $downline->id;
+                                                // finding next downline users.
+                                                $downline = User::where('username', $downline->right)->first();
+                                                if ($downline->right == 'free') {
+                                                    // check the right position
+                                                    $downline->right = $user->username;
+                                                    $downline->right_count += 1;
+                                                    $downline->save();
+                                                    $thisSponser = $downline->id;
+                                                } else {
+                                                    $downlineUsers[] = $downline->id;
+                                                    // finding next downline users
+                                                    $downline = User::where('username', $downline->right)->first();
+                                                    if ($downline->right == 'free') {
+                                                        // check the right position
+                                                        $downline->right = $user->username;
+                                                        $downline->right_count += 1;
+                                                        $downline->save();
+                                                        $thisSponser = $downline->id;
+                                                    } else {
+                                                        $downlineUsers[] = $downline->id;
+                                                        // finding next downline users
+                                                        $downline = User::where('username', $downline->right)->first();
+                                                        if ($downline->right == 'free') {
+                                                            // check the right position
+                                                            $downline->right = $user->username;
+                                                            $downline->right_count += 1;
+                                                            $downline->save();
+                                                            $thisSponser = $downline->id;
+                                                        } else {
+                                                            $downlineUsers[] = $downline->id;
+                                                            // finding next downline users
+                                                            $downline = User::where('username', $downline->right)->first();
+                                                            if ($downline->right == 'free') {
+                                                                // check the right position
+                                                                $downline->right = $user->username;
+                                                                $downline->right_count += 1;
+                                                                $downline->save();
+                                                                $thisSponser = $downline->id;
+                                                            } else {
+                                                                $downlineUsers[] = $downline->id;
+                                                                // finding next downline users
+                                                                $downline = User::where('username', $downline->right)->first();
+                                                                if ($downline->right == 'free') {
+                                                                    // check the right position
+                                                                    $downline->right = $user->username;
+                                                                    $downline->right_count += 1;
+                                                                    $downline->save();
+                                                                    $thisSponser = $downline->id;
+                                                                } else {
+                                                                    $downlineUsers[] = $downline->id;
+                                                                    // finding next downline users
+                                                                    $downline = User::where('username', $downline->right)->first();
+                                                                    if ($downline->right == 'free') {
+                                                                        // check the right position
+                                                                        $downline->right = $user->username;
+                                                                        $downline->right_count += 1;
+                                                                        $downline->save();
+                                                                        $thisSponser = $downline->id;
+                                                                    } else {
+                                                                        $downlineUsers[] = $downline->id;
+                                                                        // finding next downline users
+                                                                        $downline = User::where('username', $downline->right)->first();
+                                                                        if ($downline->right == 'free') {
+                                                                            // check the right position
+                                                                            $downline->right = $user->username;
+                                                                            $downline->right_count += 1;
+                                                                            $downline->save();
+                                                                            $thisSponser = $downline->id;
+                                                                        } else {
+                                                                            $downlineUsers[] = $downline->id;
+                                                                            // finding next downline users
+                                                                            $downline = User::where('username', $downline->right)->first();
+                                                                            if ($downline->right == 'free') {
+                                                                                // check the right position
+                                                                                $downline->right = $user->username;
+                                                                                $downline->right_count += 1;
+                                                                                $downline->save();
+                                                                                $thisSponser = $downline->id;
+                                                                            } else {
+                                                                                $downlineUsers[] = $downline->id;
+                                                                                // finding next downline users
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    $incrasingrightCountRefers = User::whereIn('id', $downlineUsers)->get();
+                    foreach ($incrasingrightCountRefers as $rightCountRefer) {
+                        $rightCountRefer->right_count += 1;
+                        $rightCountRefer->save();
+                    }
+                }
             }
+
+            deliveredCommission($thisSponser, $user->id);
         }
-        
+        // Refer System End MLM
+
+
+
+
+
+
+
+
+
+
+
+
+
         // inserting deposit transaction
         $transaction = $user->transactions()->create([
             'amount' => option("fees"),

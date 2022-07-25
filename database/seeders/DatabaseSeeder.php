@@ -66,22 +66,20 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        // $user = User::updateOrCreate([
-        //     'name' => 'Shakeel Ahmad',
-        //     'username' => 'shakeel2717',
-        //     'email' => 'shakeel2717@gmail.com',
-        //     'password' => bcrypt('asdfasdf'),
-        //     'whatsapp' => '03037702717',
-        //     'left' => 'test1',
-        //     'right' => 'test2',
-        //     'status' => true,
-        // ]);
+        $user = User::updateOrCreate([
+            'name' => 'Shakeel Ahmad',
+            'username' => 'shakeel2717',
+            'email' => 'shakeel2717@gmail.com',
+            'password' => bcrypt('asdfasdf'),
+            'whatsapp' => '03037702717',
+            'status' => true,
+        ]);
 
-        // Tid::updateOrCreate([
-        //     'user_id' => $user->id,
-        //     'tid' => rand(00000, 99999),
-        //     'status' => true,
-        // ]);
+        Tid::updateOrCreate([
+            'user_id' => $user->id,
+            'tid' => rand(00000, 99999),
+            'status' => true,
+        ]);
 
         // $user = User::updateOrCreate([
         //     'name' => 'Test User 1',
