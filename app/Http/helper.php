@@ -62,7 +62,9 @@ function indirectRefers($user_id)
                             $count[] = $refer->id;
                             $user = User::find($refer->id);
                             $refers = User::where('refer', $user->username)->get();
-                            
+                            foreach ($refers as $refer) {
+                                $count[] = $refer->id;
+                            }
                         }
                     }
                 }

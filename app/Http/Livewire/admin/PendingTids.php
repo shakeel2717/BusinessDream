@@ -251,7 +251,7 @@ final class PendingTids extends PowerGridComponent
                     $transaction->status = true;
                     $transaction->sum = true;
                     $transaction->type = 'reward';
-                    $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                    $transaction->reference = 'Reward Level 3 Recieved form ' . $user->username;
                     $transaction->save();
 
                     if ($refer->refer != "default" && $refer->status == true) {
@@ -262,7 +262,7 @@ final class PendingTids extends PowerGridComponent
                         $transaction->status = true;
                         $transaction->sum = true;
                         $transaction->type = 'reward';
-                        $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                        $transaction->reference = 'Reward Level 4 Recieved form ' . $user->username;
                         $transaction->save();
 
                         if ($refer->refer != "default" && $refer->status == true) {
@@ -273,7 +273,7 @@ final class PendingTids extends PowerGridComponent
                             $transaction->status = true;
                             $transaction->sum = true;
                             $transaction->type = 'reward';
-                            $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                            $transaction->reference = 'Reward Level 5 Recieved form ' . $user->username;
                             $transaction->save();
 
                             if ($refer->refer != "default" && $refer->status == true) {
@@ -284,7 +284,7 @@ final class PendingTids extends PowerGridComponent
                                 $transaction->status = true;
                                 $transaction->sum = true;
                                 $transaction->type = 'reward';
-                                $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                                $transaction->reference = 'Reward Level 6 Recieved form ' . $user->username;
                                 $transaction->save();
 
                                 if ($refer->refer != "default" && $refer->status == true) {
@@ -295,7 +295,7 @@ final class PendingTids extends PowerGridComponent
                                     $transaction->status = true;
                                     $transaction->sum = true;
                                     $transaction->type = 'reward';
-                                    $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                                    $transaction->reference = 'Reward Level 7 Recieved form ' . $user->username;
                                     $transaction->save();
                                 }
                             }
