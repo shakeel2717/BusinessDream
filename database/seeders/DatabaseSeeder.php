@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
 
         Option::updateOrCreate([
             'name' => 'fees',
-            'value' => 630,
+            'value' => 700,
         ]);
 
 
