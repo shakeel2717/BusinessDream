@@ -20,14 +20,14 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create($position = null, $refer = null)
+    public function create( $refer = null)
     {
         $methods = Method::where('status', true)->get();
         // checking if this refer exists
-        if ($refer != null && $position != null) {
+        if ($refer != null) {
             $referDetail = User::where('username', $refer)->firstOrFail();
         }
-        return view('auth.register', compact('methods','position', 'refer'));
+        return view('auth.register', compact('methods', 'refer'));
     }
 
     /**
@@ -45,7 +45,6 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'refer' => ['nullable', 'string', 'max:255', 'exists:users,username'],
-            'position' => ['nullable', 'string', 'max:255'],
             'tid' => ['required', 'string', 'max:255', 'unique:tids,tid'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -74,8 +73,6 @@ class RegisteredUserController extends Controller
         $user->tid()->create([
             'tid' => $request->tid,
             'status' => false,
-            'sponser_username' => $request->refer,
-            'position' => $request->position,
         ]);
 
         return redirect(RouteServiceProvider::HOME);

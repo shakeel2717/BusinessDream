@@ -81,94 +81,6 @@ class DatabaseSeeder extends Seeder
             'status' => true,
         ]);
 
-        // $user = User::updateOrCreate([
-        //     'name' => 'Test User 1',
-        //     'username' => 'test1',
-        //     'email' => 'test1@gmail.com',
-        //     'refer' => 'shakeel2717',
-        //     'left' => 'test3',
-        //     'right' => 'test4',
-        //     'password' => bcrypt('asdfasdf'),
-        //     'whatsapp' => '03037702717',
-        // ]);
-
-        // Tid::updateOrCreate([
-        //     'user_id' => $user->id,
-        //     'tid' => rand(00000, 99999),
-        // ]);
-
-        // $user = User::updateOrCreate([
-        //     'name' => 'Test User 2',
-        //     'username' => 'test2',
-        //     'email' => 'test2@gmail.com',
-        //     'password' => bcrypt('asdfasdf'),
-        //     'left' => 'test5',
-        //     'right' => 'test6',
-        //     'refer' => 'shakeel2717',
-        //     'whatsapp' => '03037702717',
-        // ]);
-
-        // Tid::updateOrCreate([
-        //     'user_id' => $user->id,
-        //     'tid' => rand(00000, 99999),
-        // ]);
-
-        // $user = User::updateOrCreate([
-        //     'name' => 'Test User 3',
-        //     'username' => 'test3',
-        //     'email' => 'test3@gmail.com',
-        //     'refer' => 'test1',
-        //     'password' => bcrypt('asdfasdf'),
-        //     'whatsapp' => '03037702717',
-        // ]);
-
-        // Tid::updateOrCreate([
-        //     'user_id' => $user->id,
-        //     'tid' => rand(00000, 99999),
-        // ]);
-
-        // $user = User::updateOrCreate([
-        //     'name' => 'Test User 4',
-        //     'username' => 'test4',
-        //     'email' => 'test4@gmail.com',
-        //     'refer' => 'test1',
-        //     'password' => bcrypt('asdfasdf'),
-        //     'whatsapp' => '03037702717',
-        // ]);
-
-        // Tid::updateOrCreate([
-        //     'user_id' => $user->id,
-        //     'tid' => rand(00000, 99999),
-        // ]);
-
-        // $user = User::updateOrCreate([
-        //     'name' => 'Test User 5',
-        //     'username' => 'test5',
-        //     'email' => 'test5@gmail.com',
-        //     'password' => bcrypt('asdfasdf'),
-        //     'refer' => 'test2',
-        //     'whatsapp' => '03037702717',
-        // ]);
-
-        // Tid::updateOrCreate([
-        //     'user_id' => $user->id,
-        //     'tid' => rand(00000, 99999),
-        // ]);
-
-        // $user = User::updateOrCreate([
-        //     'name' => 'Test User 6',
-        //     'username' => 'test6',
-        //     'email' => 'test6@gmail.com',
-        //     'password' => bcrypt('asdfasdf'),
-        //     'refer' => 'test2',
-        //     'whatsapp' => '03037702717',
-        // ]);
-
-        // Tid::updateOrCreate([
-        //     'user_id' => $user->id,
-        //     'tid' => rand(00000, 99999),
-        // ]);
-
 
         Option::updateOrCreate([
             'name' => 'fees',
@@ -177,14 +89,38 @@ class DatabaseSeeder extends Seeder
 
 
         Option::updateOrCreate([
-            'name' => 'referCommision',
-            'value' => 250,
+            'name' => 'level1',
+            'value' => 200,
         ]);
 
+        Option::updateOrCreate([
+            'name' => 'level2',
+            'value' => 100,
+        ]);
 
         Option::updateOrCreate([
-            'name' => 'referCommisionLevel2',
-            'value' => 200,
+            'name' => 'level3',
+            'value' => 50,
+        ]);
+
+        Option::updateOrCreate([
+            'name' => 'level4',
+            'value' => 50,
+        ]);
+
+        Option::updateOrCreate([
+            'name' => 'level5',
+            'value' => 50,
+        ]);
+
+        Option::updateOrCreate([
+            'name' => 'level6',
+            'value' => 50,
+        ]);
+
+        Option::updateOrCreate([
+            'name' => 'level7',
+            'value' => 50,
         ]);
     }
 }

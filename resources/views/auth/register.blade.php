@@ -21,7 +21,6 @@
                         <x-input name="password" type="password" label="Password" />
                         <x-input name="password_confirmation" type="password" label="Confirm Password" />
                         <input type="hidden" name="refer" id="refer" value="{{ $refer }}">
-                        <input type="hidden" name="position" id="position" value="{{ $position }}">
                         <br>
                         <a class="btn ripple btn-primary mb-3" data-bs-target="#scrollingmodal" data-bs-toggle="modal"
                             href="">Payment Methods</a>

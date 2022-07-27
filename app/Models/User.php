@@ -27,8 +27,6 @@ class User extends Authenticatable
         'suspend',
         'password',
         'refer',
-        'left',
-        'right',
         'role',
     ];
 

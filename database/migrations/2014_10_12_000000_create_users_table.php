@@ -22,10 +22,6 @@ return new class extends Migration
             $table->boolean('status')->default(false);
             $table->boolean('suspend')->default(false);
             $table->string('refer')->default('default');
-            $table->string('left')->default('free');
-            $table->string('right')->default('free');
-            $table->integer('left_count')->default(0);
-            $table->integer('right_count')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default('user');

@@ -65,7 +65,9 @@ class ReportController extends Controller
         } else {
             $user = User::find(auth()->user()->id);
         }
-        return view('user.report.tree', compact('user'));
+        // getting all this user Refers
+        $refers = User::where('refer', $user->username)->get();
+        return view('user.report.tree', compact('user','refers'));
     }
 
     /**
