@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\user;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
@@ -50,7 +51,10 @@ final class AllRefers extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return User::query()->where('refer', auth()->user()->username);
+        $direct = directRefers(auth()->user()->id);
+        $indirect = indirectRefers(auth()->user()->id);
+        $prepend = array_merge($direct, $indirect);
+        return User::query()->whereIn('id', $prepend);
     }
 
     /*

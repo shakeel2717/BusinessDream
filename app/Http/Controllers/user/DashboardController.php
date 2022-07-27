@@ -16,7 +16,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard.index');
+        $refers = User::whereIn('id', directRefers(auth()->user()->id))->get();
+        $inDirectRefers = User::whereIn('id', indirectRefers(auth()->user()->id))->get();
+        return view('user.dashboard.index', compact('refers','inDirectRefers'));
     }
 
     /**
