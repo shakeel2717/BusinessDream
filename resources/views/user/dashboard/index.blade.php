@@ -14,6 +14,9 @@
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
         <x-card-state value="{{ number_format(auth()->user()->transactions->where('type', 'withdraw')->where('sum', false)->sum('amount'),2) }}" icon="wallet" heading="TOTAL PAYOUT" />
     </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+        <x-card-state value="{{ number_format(auth()->user()->transactions->where('reference', 'admin deposit')->where('type', 'deposit')->where('sum', true)->sum('amount'),2) }}" icon="wallet" heading="TOTAL Rewards Win" />
+    </div>
 </div>
 <div class="row">
     <div class="col-md-8">
