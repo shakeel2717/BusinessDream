@@ -93,10 +93,6 @@ final class AllUsers extends PowerGridComponent
             ->addColumn('email')
             ->addColumn('username')
             ->addColumn('whatsapp')
-            ->addColumn('downline', function (User $model) {
-                $refers = User::whereIn('id', getAllRefersBinary($model->id))->get()->count();
-                return ($refers > 20) ? "20+" : $refers;
-            })
             ->addColumn('status')
             ->addColumn('suspend')
             ->addColumn('refer')
@@ -147,8 +143,6 @@ final class AllUsers extends PowerGridComponent
                 ->searchable()
                 ->editOnClick()
                 ->makeInputText(),
-
-            Column::make('Members', 'downline'),
 
             Column::make('STATUS', 'status')
                 ->toggleable(),
