@@ -152,9 +152,8 @@
                                 <h4 class="text-center fw-semibold landing-card-header">Features</h4>
                                 <span class="landing-title"></span>
                                 <h2 class="fw-semibold text-center">{{ env('APP_NAME') }} Main Features</h2>
-                                <p class="text-default mb-5 text-center">NBD (New Business Dream) Ye Ek Pakistani
-                                    Company Hai Aur Humara Plane Har Pakistani Berozgar Ko Rozgar Dena Yaha Ap Sirf 650
-                                    Rupe Se Register Ho Kar Apna Online Karobar Kar Sakte Hain.</p>
+                                <p class="text-default mb-5 text-center">Introducing Of (NBD) 
+NBD (New Business Dream) Ye Ek Pakistani Company Hai Aur Humara Plane Har Pakistani Berozgar Ko Rozgar Dena Yaha Ap Sirf 700 Rupe Se Register Ho Kar Apna Online Karobar Kar Sakte Hain.</p>
                                 <div class="row mt-7">
                                     <div class="col-lg-3 col-md-12">
                                         <div class="card features main-features main-features-1 wow fadeInUp reveal revealleft" data-wow-delay="0.1s">
@@ -552,13 +551,13 @@
                                                                 Duration Lifetime <br>
                                                                 Total Earning Un Limited <br>
                                                                 Team Commission Detail <br>
-                                                                Level 1 200 <br>
-                                                                Level 2 100 <br>
-                                                                Level 3 50 <br>
-                                                                Level 4 50 <br>
-                                                                Level 5 50 <br>
-                                                                Level 6 50 <br>
-                                                                Level 7 50</p> <br>
+                                                                Level 1 Rs: 200 <br>
+                                                                Level 2 Rs: 100 <br>
+                                                                Level 3 Rs: 50 <br>
+                                                                Level 4 Rs: 50 <br>
+                                                                Level 5 Rs: 50 <br>
+                                                                Level 6 Rs: 50 <br>
+                                                                Level 7 Rs: 50</p> <br>
                                                         </div>
                                                         <div class="card-body py-2">
 
