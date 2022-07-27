@@ -95,6 +95,15 @@ final class AllUsers extends PowerGridComponent
             ->addColumn('whatsapp')
             ->addColumn('status')
             ->addColumn('suspend')
+            ->addColumn('refers', function (User $model) {
+                return totalRefersGet($model->id);
+            })
+            ->addColumn('balance', function (User $model) {
+                return balance($model->id);
+            })
+            ->addColumn('rewards', function (User $model) {
+                return $model->transactions->where('reference', 'admin deposit')->where('type', 'deposit')->where('sum', true)->sum('amount');
+            })
             ->addColumn('refer')
             ->addColumn('left')
             ->addColumn('right')
@@ -144,6 +153,10 @@ final class AllUsers extends PowerGridComponent
                 ->editOnClick()
                 ->makeInputText(),
 
+            Column::make('Balance', 'balance'),
+            Column::make('Rewards', 'rewards'),
+            Column::make('Rewards', 'rewards'),
+
             Column::make('STATUS', 'status')
                 ->toggleable(),
 
@@ -151,16 +164,6 @@ final class AllUsers extends PowerGridComponent
                 ->toggleable(),
 
             Column::make('REFER', 'refer')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('LEFT', 'left')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('RIGHT', 'right')
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),

@@ -85,3 +85,13 @@ function directRefers($user_id)
 
     return $count;
 }
+
+
+
+function totalRefersGet($user_id)
+{
+    $refers = User::whereIn('id', directRefers($user_id))->where('status', true)->get();
+    $inDirectRefers = User::whereIn('id', indirectRefers($user_id))->where('status', true)->get();
+
+    return $refers->count() + $inDirectRefers->count();
+}
