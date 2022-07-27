@@ -220,78 +220,92 @@ final class PendingTids extends PowerGridComponent
 
 
 
-        // Refer System Start MLM
-        if ($tid->sponser_username != 'default') {
-            $sponser = User::where('username', $tid->sponser_username)->first();
-            $position = $tid->position;
-            $downlineUsers = [];
-            if ($position != '' && $position == 'left') {
-                if ($sponser->left == 'free') {
-                    // check the left position
-                    $sponser->left = $user->username;
-                    $sponser->left_count += 1;
-                    $sponser->save();
-                    $thisSponser = $sponser->id;
-                } else {
-                    $downlineUsers[] = $sponser->id;
-                    // finding next downline users
-                    $downline = User::where('username', $sponser->left)->first();
-                    leftDeepLoop:
-                    if ($downline->left == 'free') {
-                        // check the left position
-                        $downline->left = $user->username;
-                        $downline->left_count += 1;
-                        $downline->save();
-                        $thisSponser = $downline->id;
-                    } else {
-                        $downlineUsers[] = $downline->id;
-                        // finding next downline users
-                        $downline = User::where('username', $downline->left)->first();
-                        goto leftDeepLoop;
-                    }
+        // Refer System 
+        if ($user->refer != "default" && $user->status == true) {
+            $refer = User::where('username', $user->refer)->first();
+            $transaction = new Transaction();
+            $transaction->user_id = $refer->id;
+            $transaction->amount = option("level1");
+            $transaction->status = true;
+            $transaction->sum = true;
+            $transaction->type = 'reward';
+            $transaction->reference = 'Reward Level 1 Recieved form ' . $user->username;
+            $transaction->save();
 
-                    $incrasingLeftCountRefers = User::whereIn('id', $downlineUsers)->get();
-                    foreach ($incrasingLeftCountRefers as $leftCountRefer) {
-                        $leftCountRefer->left_count += 1;
-                        $leftCountRefer->save();
-                    }
-                }
-            } elseif ($position != '' && $position == 'right') {
-                // check the right position
-                if ($sponser->right == 'free') {
-                    // check the right position
-                    $sponser->right = $user->username;
-                    $sponser->right_count += 1;
-                    $sponser->save();
-                    $thisSponser = $sponser->id;
-                } else {
-                    $downlineUsers[] = $sponser->id;
-                    // finding next downline users
-                    $downline = User::where('username', $sponser->right)->first();
-                    rightDeepLoop:
-                    if ($downline->right == 'free') {
-                        // check the right position
-                        $downline->right = $user->username;
-                        $downline->right_count += 1;
-                        $downline->save();
-                        $thisSponser = $downline->id;
-                    } else {
-                        $downlineUsers[] = $downline->id;
-                        // finding next downline users
-                        $downline = User::where('username', $downline->right)->first();
-                        goto rightDeepLoop;
-                    }
+            if ($refer->refer != "default" && $refer->status == true) {
+                $refer = User::where('username', $refer->refer)->first();
+                $transaction = new Transaction();
+                $transaction->user_id = $refer->id;
+                $transaction->amount = option("level2");
+                $transaction->status = true;
+                $transaction->sum = true;
+                $transaction->type = 'reward';
+                $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                $transaction->save();
 
-                    $incrasingrightCountRefers = User::whereIn('id', $downlineUsers)->get();
-                    foreach ($incrasingrightCountRefers as $rightCountRefer) {
-                        $rightCountRefer->right_count += 1;
-                        $rightCountRefer->save();
+                if ($refer->refer != "default" && $refer->status == true) {
+                    $refer = User::where('username', $refer->refer)->first();
+                    $transaction = new Transaction();
+                    $transaction->user_id = $refer->id;
+                    $transaction->amount = option("level3");
+                    $transaction->status = true;
+                    $transaction->sum = true;
+                    $transaction->type = 'reward';
+                    $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                    $transaction->save();
+
+                    if ($refer->refer != "default" && $refer->status == true) {
+                        $refer = User::where('username', $refer->refer)->first();
+                        $transaction = new Transaction();
+                        $transaction->user_id = $refer->id;
+                        $transaction->amount = option("level4");
+                        $transaction->status = true;
+                        $transaction->sum = true;
+                        $transaction->type = 'reward';
+                        $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                        $transaction->save();
+
+                        if ($refer->refer != "default" && $refer->status == true) {
+                            $refer = User::where('username', $refer->refer)->first();
+                            $transaction = new Transaction();
+                            $transaction->user_id = $refer->id;
+                            $transaction->amount = option("level5");
+                            $transaction->status = true;
+                            $transaction->sum = true;
+                            $transaction->type = 'reward';
+                            $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                            $transaction->save();
+
+                            if ($refer->refer != "default" && $refer->status == true) {
+                                $refer = User::where('username', $refer->refer)->first();
+                                $transaction = new Transaction();
+                                $transaction->user_id = $refer->id;
+                                $transaction->amount = option("level6");
+                                $transaction->status = true;
+                                $transaction->sum = true;
+                                $transaction->type = 'reward';
+                                $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                                $transaction->save();
+
+                                if ($refer->refer != "default" && $refer->status == true) {
+                                    $refer = User::where('username', $refer->refer)->first();
+                                    $transaction = new Transaction();
+                                    $transaction->user_id = $refer->id;
+                                    $transaction->amount = option("level7");
+                                    $transaction->status = true;
+                                    $transaction->sum = true;
+                                    $transaction->type = 'reward';
+                                    $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                                    $transaction->save();
+                                }
+                            }
+                        }
                     }
                 }
             }
-            deliveredCommission($user->id);
         }
-        // Refer System End MLM
+
+        // Refer System 
 
 
 
