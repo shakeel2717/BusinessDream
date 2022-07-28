@@ -223,80 +223,109 @@ final class PendingTids extends PowerGridComponent
         // Refer System 
         if ($user->refer != "default" && $user->status == true) {
             $refer = User::where('username', $user->refer)->first();
-            $transaction = new Transaction();
-            $transaction->user_id = $refer->id;
-            $transaction->amount = option("level1");
-            $transaction->status = true;
-            $transaction->sum = true;
-            $transaction->type = 'reward';
-            $transaction->reference = 'Reward Level 1 Recieved form ' . $user->username;
-            $transaction->save();
-
-            if ($refer->refer != "default" && $refer->status == true) {
-                $refer = User::where('username', $refer->refer)->first();
+            // checking if already recieved
+            $security = Transaction::where('type', 'reward')->where('note', 'level 1')->get();
+            if ($security->count() < 1) {
                 $transaction = new Transaction();
                 $transaction->user_id = $refer->id;
-                $transaction->amount = option("level2");
+                $transaction->amount = option("level1");
                 $transaction->status = true;
                 $transaction->sum = true;
                 $transaction->type = 'reward';
-                $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                $transaction->note = 'level 1';
+                $transaction->reference = 'Reward Level 1 Recieved form ' . $user->username;
                 $transaction->save();
+            }
+
+            if ($refer->refer != "default" && $refer->status == true) {
+                $refer = User::where('username', $refer->refer)->first();
+                $security = Transaction::where('type', 'reward')->where('note', 'level 2')->get();
+                if ($security->count() < 1) {
+                    $transaction = new Transaction();
+                    $transaction->user_id = $refer->id;
+                    $transaction->amount = option("level2");
+                    $transaction->status = true;
+                    $transaction->sum = true;
+                    $transaction->note = 'level 2';
+                    $transaction->type = 'reward';
+                    $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
+                    $transaction->save();
+                }
 
                 if ($refer->refer != "default" && $refer->status == true) {
                     $refer = User::where('username', $refer->refer)->first();
-                    $transaction = new Transaction();
-                    $transaction->user_id = $refer->id;
-                    $transaction->amount = option("level3");
-                    $transaction->status = true;
-                    $transaction->sum = true;
-                    $transaction->type = 'reward';
-                    $transaction->reference = 'Reward Level 3 Recieved form ' . $user->username;
-                    $transaction->save();
-
-                    if ($refer->refer != "default" && $refer->status == true) {
-                        $refer = User::where('username', $refer->refer)->first();
+                    $security = Transaction::where('type', 'reward')->where('note', 'level 3')->get();
+                    if ($security->count() < 1) {
                         $transaction = new Transaction();
                         $transaction->user_id = $refer->id;
-                        $transaction->amount = option("level4");
+                        $transaction->amount = option("level3");
                         $transaction->status = true;
                         $transaction->sum = true;
                         $transaction->type = 'reward';
-                        $transaction->reference = 'Reward Level 4 Recieved form ' . $user->username;
+                        $transaction->note = 'level 3';
+                        $transaction->reference = 'Reward Level 3 Recieved form ' . $user->username;
                         $transaction->save();
+                    }
 
-                        if ($refer->refer != "default" && $refer->status == true) {
-                            $refer = User::where('username', $refer->refer)->first();
+                    if ($refer->refer != "default" && $refer->status == true) {
+                        $refer = User::where('username', $refer->refer)->first();
+                        $security = Transaction::where('type', 'reward')->where('note', 'level 4')->get();
+                        if ($security->count() < 1) {
                             $transaction = new Transaction();
                             $transaction->user_id = $refer->id;
-                            $transaction->amount = option("level5");
+                            $transaction->amount = option("level4");
                             $transaction->status = true;
                             $transaction->sum = true;
                             $transaction->type = 'reward';
-                            $transaction->reference = 'Reward Level 5 Recieved form ' . $user->username;
+                            $transaction->note = 'level 4';
+                            $transaction->reference = 'Reward Level 4 Recieved form ' . $user->username;
                             $transaction->save();
+                        }
 
-                            if ($refer->refer != "default" && $refer->status == true) {
-                                $refer = User::where('username', $refer->refer)->first();
+                        if ($refer->refer != "default" && $refer->status == true) {
+                            $refer = User::where('username', $refer->refer)->first();
+                            $security = Transaction::where('type', 'reward')->where('note', 'level 5')->get();
+                            if ($security->count() < 1) {
                                 $transaction = new Transaction();
                                 $transaction->user_id = $refer->id;
-                                $transaction->amount = option("level6");
+                                $transaction->amount = option("level5");
                                 $transaction->status = true;
                                 $transaction->sum = true;
                                 $transaction->type = 'reward';
-                                $transaction->reference = 'Reward Level 6 Recieved form ' . $user->username;
+                                $transaction->note = 'level 5';
+                                $transaction->reference = 'Reward Level 5 Recieved form ' . $user->username;
                                 $transaction->save();
+                            }
 
-                                if ($refer->refer != "default" && $refer->status == true) {
-                                    $refer = User::where('username', $refer->refer)->first();
+                            if ($refer->refer != "default" && $refer->status == true) {
+                                $refer = User::where('username', $refer->refer)->first();
+                                $security = Transaction::where('type', 'reward')->where('note', 'level 6')->get();
+                                if ($security->count() < 1) {
                                     $transaction = new Transaction();
                                     $transaction->user_id = $refer->id;
-                                    $transaction->amount = option("level7");
+                                    $transaction->amount = option("level6");
                                     $transaction->status = true;
                                     $transaction->sum = true;
                                     $transaction->type = 'reward';
-                                    $transaction->reference = 'Reward Level 7 Recieved form ' . $user->username;
+                                    $transaction->note = 'level 6';
+                                    $transaction->reference = 'Reward Level 6 Recieved form ' . $user->username;
                                     $transaction->save();
+                                }
+
+                                if ($refer->refer != "default" && $refer->status == true) {
+                                    $refer = User::where('username', $refer->refer)->first();
+                                    $security = Transaction::where('type', 'reward')->where('note', 'level 1')->get();
+                                    if ($security->count() < 1) {
+                                        $transaction = new Transaction();
+                                        $transaction->user_id = $refer->id;
+                                        $transaction->amount = option("level7");
+                                        $transaction->status = true;
+                                        $transaction->sum = true;
+                                        $transaction->type = 'reward';
+                                        $transaction->note = 'level 7';
+                                        $transaction->reference = 'Reward Level 7 Recieved form ' . $user->username;
+                                        $transaction->save();
+                                    }
                                 }
                             }
                         }
