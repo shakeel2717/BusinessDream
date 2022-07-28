@@ -555,13 +555,13 @@
                                                                 Duration Lifetime <br>
                                                                 Total Earning Un Limited <br>
                                                                 Team Commission Detail <br>
-                                                                Level 1 Rs: 200 <br>
-                                                                Level 2 Rs: 100 <br>
-                                                                Level 3 Rs: 50 <br>
-                                                                Level 4 Rs: 50 <br>
-                                                                Level 5 Rs: 50 <br>
-                                                                Level 6 Rs: 50 <br>
-                                                                Level 7 Rs: 50</p> <br>
+                                                                Level 1 Rs: {{ option("level1") }} <br>
+                                                                Level 2 Rs: {{ option("level2") }} <br>
+                                                                Level 3 Rs: {{ option("level3") }} <br>
+                                                                Level 4 Rs: {{ option("level4") }} <br>
+                                                                Level 5 Rs: {{ option("level5") }} <br>
+                                                                Level 6 Rs: {{ option("level6") }} <br>
+                                                                Level 7 Rs: {{ option("level7") }}</p> <br>
                                                         </div>
                                                         <div class="card-body py-2">
 
