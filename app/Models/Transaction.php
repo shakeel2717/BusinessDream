@@ -18,6 +18,7 @@ class Transaction extends Model
         'note',
         'sum',
         'reference',
+        'from',
     ];
 
 

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('note')->nullable();
             $table->boolean('sum')->default(false);
             $table->string('reference')->nullable();
+            $table->string('from')->nullable();
             $table->timestamps();
         });
     }

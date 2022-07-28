@@ -222,9 +222,10 @@ final class PendingTids extends PowerGridComponent
 
         // Refer System 
         if ($user->refer != "default" && $user->status == true) {
+            $username = $user->username;
             $refer = User::where('username', $user->refer)->first();
             // checking if already recieved
-            $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 1')->get();
+            $security = Transaction::where('user_id', $refer->id)->where('type', 'reward')->where('from', $username)->where('note', 'level 1')->get();
             if ($security->count() < 1) {
                 $transaction = new Transaction();
                 $transaction->user_id = $refer->id;
@@ -233,13 +234,15 @@ final class PendingTids extends PowerGridComponent
                 $transaction->sum = true;
                 $transaction->type = 'reward';
                 $transaction->note = 'level 1';
+                $transaction->from = $username;
                 $transaction->reference = 'Reward Level 1 Recieved form ' . $user->username;
                 $transaction->save();
             }
 
             if ($refer->refer != "default" && $refer->status == true) {
+                $username = $refer->username;
                 $refer = User::where('username', $refer->refer)->first();
-                $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 2')->get();
+                $security = Transaction::where('user_id', $refer->id)->where('type', 'reward')->where('from', $username)->where('note', 'level 2')->get();
                 if ($security->count() < 1) {
                     $transaction = new Transaction();
                     $transaction->user_id = $refer->id;
@@ -248,13 +251,15 @@ final class PendingTids extends PowerGridComponent
                     $transaction->sum = true;
                     $transaction->note = 'level 2';
                     $transaction->type = 'reward';
+                    $transaction->from = $username;
                     $transaction->reference = 'Reward Level 2 Recieved form ' . $user->username;
                     $transaction->save();
                 }
 
                 if ($refer->refer != "default" && $refer->status == true) {
+                    $username = $refer->username;
                     $refer = User::where('username', $refer->refer)->first();
-                    $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 3')->get();
+                    $security = Transaction::where('user_id', $refer->id)->where('type', 'reward')->where('from', $username)->where('note', 'level 3')->get();
                     if ($security->count() < 1) {
                         $transaction = new Transaction();
                         $transaction->user_id = $refer->id;
@@ -263,13 +268,15 @@ final class PendingTids extends PowerGridComponent
                         $transaction->sum = true;
                         $transaction->type = 'reward';
                         $transaction->note = 'level 3';
+                        $transaction->from = $username;
                         $transaction->reference = 'Reward Level 3 Recieved form ' . $user->username;
                         $transaction->save();
                     }
 
                     if ($refer->refer != "default" && $refer->status == true) {
+                        $username = $refer->username;
                         $refer = User::where('username', $refer->refer)->first();
-                        $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 4')->get();
+                        $security = Transaction::where('user_id', $refer->id)->where('type', 'reward')->where('from', $username)->where('note', 'level 4')->get();
                         if ($security->count() < 1) {
                             $transaction = new Transaction();
                             $transaction->user_id = $refer->id;
@@ -278,13 +285,15 @@ final class PendingTids extends PowerGridComponent
                             $transaction->sum = true;
                             $transaction->type = 'reward';
                             $transaction->note = 'level 4';
+                            $transaction->from = $username;
                             $transaction->reference = 'Reward Level 4 Recieved form ' . $user->username;
                             $transaction->save();
                         }
 
                         if ($refer->refer != "default" && $refer->status == true) {
+                            $username = $refer->username;
                             $refer = User::where('username', $refer->refer)->first();
-                            $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 5')->get();
+                            $security = Transaction::where('user_id', $refer->id)->where('type', 'reward')->where('from', $username)->where('note', 'level 5')->get();
                             if ($security->count() < 1) {
                                 $transaction = new Transaction();
                                 $transaction->user_id = $refer->id;
@@ -293,13 +302,15 @@ final class PendingTids extends PowerGridComponent
                                 $transaction->sum = true;
                                 $transaction->type = 'reward';
                                 $transaction->note = 'level 5';
+                                $transaction->from = $username;
                                 $transaction->reference = 'Reward Level 5 Recieved form ' . $user->username;
                                 $transaction->save();
                             }
 
                             if ($refer->refer != "default" && $refer->status == true) {
+                                $username = $refer->username;
                                 $refer = User::where('username', $refer->refer)->first();
-                                $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 6')->get();
+                                $security = Transaction::where('user_id', $refer->id)->where('type', 'reward')->where('from', $username)->where('note', 'level 6')->get();
                                 if ($security->count() < 1) {
                                     $transaction = new Transaction();
                                     $transaction->user_id = $refer->id;
@@ -308,13 +319,15 @@ final class PendingTids extends PowerGridComponent
                                     $transaction->sum = true;
                                     $transaction->type = 'reward';
                                     $transaction->note = 'level 6';
+                                    $transaction->from = $username;
                                     $transaction->reference = 'Reward Level 6 Recieved form ' . $user->username;
                                     $transaction->save();
                                 }
 
                                 if ($refer->refer != "default" && $refer->status == true) {
+                                    $username = $refer->username;
                                     $refer = User::where('username', $refer->refer)->first();
-                                    $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 7')->get();
+                                    $security = Transaction::where('user_id', $refer->id)->where('type', 'reward')->where('from', $username)->where('note', 'level 7')->get();
                                     if ($security->count() < 1) {
                                         $transaction = new Transaction();
                                         $transaction->user_id = $refer->id;
@@ -323,6 +336,7 @@ final class PendingTids extends PowerGridComponent
                                         $transaction->sum = true;
                                         $transaction->type = 'reward';
                                         $transaction->note = 'level 7';
+                                        $transaction->from = $username;
                                         $transaction->reference = 'Reward Level 7 Recieved form ' . $user->username;
                                         $transaction->save();
                                     }
