@@ -152,8 +152,8 @@
                                 <h4 class="text-center fw-semibold landing-card-header">Features</h4>
                                 <span class="landing-title"></span>
                                 <h2 class="fw-semibold text-center">{{ env('APP_NAME') }} Main Features</h2>
-                                <p class="text-default mb-5 text-center">Introducing Of (NBD) 
-NBD (New Business Dream) Ye Ek Pakistani Company Hai Aur Humara Plane Har Pakistani Berozgar Ko Rozgar Dena Yaha Ap Sirf 700 Rupe Se Register Ho Kar Apna Online Karobar Kar Sakte Hain.</p>
+                                <p class="text-default mb-5 text-center">Introducing Of (NBD)
+                                    NBD (New Business Dream) Ye Ek Pakistani Company Hai Aur Humara Plane Har Pakistani Berozgar Ko Rozgar Dena Yaha Ap Sirf 700 Rupe Se Register Ho Kar Apna Online Karobar Kar Sakte Hain.</p>
                                 <div class="row mt-7">
                                     <div class="col-lg-3 col-md-12">
                                         <div class="card features main-features main-features-1 wow fadeInUp reveal revealleft" data-wow-delay="0.1s">
@@ -354,7 +354,7 @@ NBD (New Business Dream) Ye Ek Pakistani Company Hai Aur Humara Plane Har Pakist
                                 <h4 class="text-center fw-semibold landing-card-header">About The System</h4>
                                 <span class="landing-title"></span>
                                 <div class="text-center">
-                                    <h2 class="text-center fw-semibold">How it's Work!
+                                    <h2 class="text-center fw-semibold">Contact Detail!
                                     </h2>
                                 </div>
                                 <div class="reveal">
@@ -508,16 +508,20 @@ NBD (New Business Dream) Ye Ek Pakistani Company Hai Aur Humara Plane Har Pakist
                                             <div class="col-xl-8 col-lg-6 col-md-6 col-sm-12">
                                                 <div class="working-content content-1">
                                                     <h4 class="mb-3">Quick Support </h4>
-                                                    <p class="title-desc text-muted">Yaha Kam Karna Bht Asan Hai Apko
-                                                        Sirf 2 Members Ko Join Karwana Hai Aur Unko Ache Se Guideline
-                                                        Deni Hai Samjhana Hai K Wo Bhi Aage 2 Member Ko Join Karwaye
-                                                        Jese Apke 2 Members Ban Jayege Apka Kam Start Hojayega Ap
-                                                        Befiqar Ho Kar Kam Karte Jaye Aur Profit Hasil Karte Jaye 1st
-                                                        Pair Means <br> <br> Right/Left Pe Ek Ek Member Lagane Pe 1st
-                                                        Pair Pe Apko 250 Earning Milegi Uske Bad Apke Jitne Pairs Bante
-                                                        Jayege Har Pair Pe Apko 200 Earning Milti Jayegi Jitne Pair Utni
-                                                        Earning Ek Din Me Ap Yaha Se 200 Se Unlimited Earning Kar Sakte
-                                                        Hain Jis Me Rewards Bhi Shamil Hain....</p>
+                                                    <p class="title-desc text-muted">
+                                                    <p>We Are Always Available For Your Help..
+                                                        Owners: <br>
+                                                        Muhammad Nadeem<br>
+                                                        Syeda Abeer Javed<br>
+
+                                                        Contact Us Without Hesitate<br>
+                                                        Syeda Abeer Javed<br>
+                                                        03085142205<br>
+                                                        Muhammad Nadeem<br>
+                                                        03163677806<br>
+                                                        Email:info@newbusinessdream.com
+                                                    </p>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
