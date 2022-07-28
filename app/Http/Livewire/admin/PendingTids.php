@@ -224,7 +224,7 @@ final class PendingTids extends PowerGridComponent
         if ($user->refer != "default" && $user->status == true) {
             $refer = User::where('username', $user->refer)->first();
             // checking if already recieved
-            $security = Transaction::where('type', 'reward')->where('note', 'level 1')->get();
+            $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 1')->get();
             if ($security->count() < 1) {
                 $transaction = new Transaction();
                 $transaction->user_id = $refer->id;
@@ -239,7 +239,7 @@ final class PendingTids extends PowerGridComponent
 
             if ($refer->refer != "default" && $refer->status == true) {
                 $refer = User::where('username', $refer->refer)->first();
-                $security = Transaction::where('type', 'reward')->where('note', 'level 2')->get();
+                $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 2')->get();
                 if ($security->count() < 1) {
                     $transaction = new Transaction();
                     $transaction->user_id = $refer->id;
@@ -254,7 +254,7 @@ final class PendingTids extends PowerGridComponent
 
                 if ($refer->refer != "default" && $refer->status == true) {
                     $refer = User::where('username', $refer->refer)->first();
-                    $security = Transaction::where('type', 'reward')->where('note', 'level 3')->get();
+                    $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 3')->get();
                     if ($security->count() < 1) {
                         $transaction = new Transaction();
                         $transaction->user_id = $refer->id;
@@ -269,7 +269,7 @@ final class PendingTids extends PowerGridComponent
 
                     if ($refer->refer != "default" && $refer->status == true) {
                         $refer = User::where('username', $refer->refer)->first();
-                        $security = Transaction::where('type', 'reward')->where('note', 'level 4')->get();
+                        $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 4')->get();
                         if ($security->count() < 1) {
                             $transaction = new Transaction();
                             $transaction->user_id = $refer->id;
@@ -284,7 +284,7 @@ final class PendingTids extends PowerGridComponent
 
                         if ($refer->refer != "default" && $refer->status == true) {
                             $refer = User::where('username', $refer->refer)->first();
-                            $security = Transaction::where('type', 'reward')->where('note', 'level 5')->get();
+                            $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 5')->get();
                             if ($security->count() < 1) {
                                 $transaction = new Transaction();
                                 $transaction->user_id = $refer->id;
@@ -299,7 +299,7 @@ final class PendingTids extends PowerGridComponent
 
                             if ($refer->refer != "default" && $refer->status == true) {
                                 $refer = User::where('username', $refer->refer)->first();
-                                $security = Transaction::where('type', 'reward')->where('note', 'level 6')->get();
+                                $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 6')->get();
                                 if ($security->count() < 1) {
                                     $transaction = new Transaction();
                                     $transaction->user_id = $refer->id;
@@ -314,7 +314,7 @@ final class PendingTids extends PowerGridComponent
 
                                 if ($refer->refer != "default" && $refer->status == true) {
                                     $refer = User::where('username', $refer->refer)->first();
-                                    $security = Transaction::where('type', 'reward')->where('note', 'level 1')->get();
+                                    $security = Transaction::where('user_id',$refer->id)->where('type', 'reward')->where('note', 'level 7')->get();
                                     if ($security->count() < 1) {
                                         $transaction = new Transaction();
                                         $transaction->user_id = $refer->id;
