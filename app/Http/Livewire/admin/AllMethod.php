@@ -24,7 +24,12 @@ final class AllMethod extends PowerGridComponent
 
     protected function getListeners()
     {
-        return 'deleteEntry';
+        return array_merge(
+            parent::getListeners(),
+            [
+                'deleteEntry',
+            ]
+        );
     }
 
 
