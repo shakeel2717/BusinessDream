@@ -9,7 +9,7 @@
         <x-card-state value="{{ $refers->count() }}" icon="users" heading="TOTAL Direct Referrals" />
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-        <x-card-state value="{{ totalIndirectCount(auth()->user()->id) }}" icon="users" heading="TOTAL In-Direct Referrals" />
+        <x-card-state value="{{ totalIndirectCount(auth()->user()->id)->count() }}" icon="users" heading="TOTAL In-Direct Referrals" />
     </div>
     <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
         <x-card-state value="{{ number_format(auth()->user()->transactions->where('type', 'withdraw')->where('sum', false)->sum('amount'),2) }}" icon="wallet" heading="TOTAL PAYOUT" />

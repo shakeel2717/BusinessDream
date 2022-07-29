@@ -99,28 +99,28 @@ function totalRefersGet($user_id)
 
 function totalIndirectCount($user_id)
 {
-    $count = 0;
+    $count = [];
     $level1Refers = Transaction::where('type', 'reward')->where('user_id', $user_id)->where('note', 'level 1')->get();
     foreach ($level1Refers as $level1) {
         // $count++;
         $level2Refers = Transaction::where('type', 'reward')->where('user_id', $user_id)->where('note', 'level 2')->get();
         foreach ($level2Refers as $level1) {
-            $count++;
+            $count[] = $level1->id;
             $level3Refers = Transaction::where('type', 'reward')->where('user_id', $user_id)->where('note', 'level 3')->get();
             foreach ($level3Refers as $level1) {
-                $count++;
+                $count[] = $level1->id;
                 $level4Refers = Transaction::where('type', 'reward')->where('user_id', $user_id)->where('note', 'level 4')->get();
                 foreach ($level4Refers as $level1) {
-                    $count++;
+                    $count[] = $level1->id;
                     $level5Refers = Transaction::where('type', 'reward')->where('user_id', $user_id)->where('note', 'level 5')->get();
                     foreach ($level5Refers as $level1) {
-                        $count++;
+                        $count[] = $level1->id;
                         $level6Refers = Transaction::where('type', 'reward')->where('user_id', $user_id)->where('note', 'level 6')->get();
                         foreach ($level6Refers as $level1) {
-                            $count++;
+                            $count[] = $level1->id;
                             $level7Refers = Transaction::where('type', 'reward')->where('user_id', $user_id)->where('note', 'level 7')->get();
                             foreach ($level7Refers as $level1) {
-                                $count++;
+                                $count[] = $level1->id;
                             }
                         }
                     }
@@ -128,6 +128,8 @@ function totalIndirectCount($user_id)
             }
         }
     }
+    $count = array_unique($count);
 
-    return $count;
+    $data = Transaction::whereIn('id', $count)->get();
+    return $data;
 }
